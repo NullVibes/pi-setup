@@ -1,0 +1,40 @@
+#!/bin/bash
+
+SSHD="./sshd_config"
+#TUN = "/etc/networkd-dispatcher/routable.d/99-tun0"
+TUN="./99-tun0"
+TUNA="10.0.3.1"
+TUNB="10.0.3.2"
+
+
+ssh_p2p_up() {
+	# Does /etc/ssh/sshd_config exist?
+	if [ -f "${SSHD}" ];
+	then
+		# If so, change the config
+		sed 's/^.PermitTunnel.*/PermitTunnel yes/' ${SSHD} | tee ${SSHD}
+		sed 's/^.ClientAliveInterval.*/ClientAliveInterval 10/' ${SSHD} | tee ${SSHD}
+		sed 's/^.ClientAliveCountMax.*/ClientAliveCountMax 6/' ${SSHD} | tee ${SSHD}
+		systemctl restart ssh
+	else
+		echo "OpenSSH-server package NOT installed." && exit 0
+	fi
+
+	# Check for tun0 config
+	if [ -f "${TUN}" ];
+	then
+		echo ""
+	else
+		# Write tun0 config
+		echo "/sbin/ip address add ${TUNA}/32 peer ${TUNB} dev tun0" > ${TUN} 
+		echo "/sbin/ip link set dev tun0 up" >>  ${TUN}
+		chmod +x ${TUN}
+	fi
+}
+
+if [ $UID -eq 0 ]
+then
+	ssh_p2p_up
+else
+	echo "Try again with SUDO..."
+fi
