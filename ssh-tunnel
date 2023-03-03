@@ -5,6 +5,7 @@ SSHD="./sshd_config"
 TUN="./99-tun0"
 TUNA="10.0.3.1"
 TUNB="10.0.3.2"
+NETDEV="/etc/systemd/network/tun0.netdev"
 
 
 ssh_p2p_up() {
@@ -12,11 +13,12 @@ ssh_p2p_up() {
 	if [ -f "${SSHD}" ];
 	then
 		# If so, change the config
-		sed 's/^.PermitTunnel.*/PermitTunnel yes/' ${SSHD} | tee ${SSHD}
-		sed 's/^.ClientAliveInterval.*/ClientAliveInterval 10/' ${SSHD} | tee ${SSHD}
-		sed 's/^.ClientAliveCountMax.*/ClientAliveCountMax 6/' ${SSHD} | tee ${SSHD}
+		sed 's/^.PermitTunnel.*/PermitTunnel yes/' ${SSHD} > ${SSHD}
+		sed 's/^.ClientAliveInterval.*/ClientAliveInterval 10/' ${SSHD} > ${SSHD}
+		sed 's/^.ClientAliveCountMax.*/ClientAliveCountMax 6/' ${SSHD} > ${SSHD}
 		systemctl restart ssh
 	else
+		#which sshd
 		echo "OpenSSH-server package NOT installed." && exit 0
 	fi
 
@@ -30,6 +32,11 @@ ssh_p2p_up() {
 		echo "/sbin/ip link set dev tun0 up" >>  ${TUN}
 		chmod +x ${TUN}
 	fi
+	
+	# Check for tun0.netdev service
+	if [ -f "$NETDEV" ];
+	then
+		continue
 }
 
 if [ $UID -eq 0 ]
