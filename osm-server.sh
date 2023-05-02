@@ -54,7 +54,7 @@ make install-mod_tile
 ldconfig
 
 su - renderaccount -c 'mkdir ~/src; cd ~/src; git clone https://github.com/gravitystorm/openstreetmap-carto;'
-su - renderaccount -c 'cd ~/src; npm install -g carto'
+npm install -g carto
 su - renderaccount -c 'carto ~/src/openstreetmap-carto/project.mml > ~/src/openstreetmap-carto/mapnik.xml'
 su - renderaccount -c 'mkdir ~/data; cd ~/data; wget https://download.geofabrik.de/north-america/us-latest.osm.pbf'
 su - renderaccount -c 'osm2pgsql -d gis --create --slim  -G --hstore --tag-transform-script ~/src/openstreetmap-carto/openstreetmap-carto.lua -C 8192 --number-processes 2 -S ~/src/openstreetmap-carto/openstreetmap-carto.style ~/data/us-latest.osm.pbf'
