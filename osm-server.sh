@@ -8,9 +8,24 @@ rpi_install() {
 
   echo 'options g_ether host_addr='$(dmesg | awk '/: HOST MAC/{print $NF}')' dev_addr='$(dmesg | awk '/: MAC/{print $NF}') | sudo tee /etc/modprobe.d/g_ether.conf
 
-  # Disable BT
+## Disable Bluetooth
   #echo 'Disabling BT requires rebooting.'
   #sed '/\[all\]/a\ dtoverlay=disable-bt' /boot/config.txt
+  
+  # Check RAM and resize Swap
+  # free
+  # dphys-swapfile swapoff
+  # sed '/CONF_SWAPSIZE=500/r\CONF_SWAPSIZE=2048' /etc/dphys-swapfile
+  # dphys-swapfile swapon
+  # systemctl restart dphys-swapfile
+  # sysctl vm.swappiness
+
+## Persistent Change
+# sed '/vm.swappiness=60/r\vm.swappiness=100' /etc/sysctl.conf
+
+## Temporary Change
+# sysctl -w vm.swappiness=100
+
   
   apt install postgresql-13-postgis-3 postgresql-13-postgis-3-scripts -y
 }
@@ -60,17 +75,3 @@ su - renderaccount -c 'mkdir ~/data; cd ~/data; wget https://download.geofabrik.
 su - renderaccount -c 'osm2pgsql -d gis --create --slim  -G --hstore --tag-transform-script ~/src/openstreetmap-carto/openstreetmap-carto.lua -C 8192 --number-processes 2 -S ~/src/openstreetmap-carto/openstreetmap-carto.style ~/data/us-latest.osm.pbf'
 su - renderaccount -c 'cd ~/src/openstreetmap-carto; psql -d gis -f indexes.sql; scripts/get-external-data.py; scripts/get-fonts.sh'
 
-
-# Check RAM and resize Swap
-# free
-# dphys-swapfile swapoff
-# sed '/CONF_SWAPSIZE=500/r\CONF_SWAPSIZE=2048' /etc/dphys-swapfile
-# dphys-swapfile swapon
-# systemctl restart dphys-swapfile
-# sysctl vm.swappiness
-
-## Persistent Change
-# sed '/vm.swappiness=60/r\vm.swappiness=100' /etc/sysctl.conf
-
-## Temporary Change
-# sysctl -w vm.swappiness=100
