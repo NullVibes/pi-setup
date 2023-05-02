@@ -11,14 +11,22 @@ rpi_install() {
   # Disable BT
   #echo 'Disabling BT requires rebooting.'
   #sed '/\[all\]/a\ dtoverlay=disable-bt' /boot/config.txt
-
-  apt update && apt upgrade -y
+  
+  usermod -aG sudo renderaccount
+  
+  apt install postgresql-13-postgis-3 postgresql-13-postgis-3-scripts -y
 }
 
 
 ubuntu_install () {
+  usermod -aG sudo renderaccount
+  
+  apt install postgresql-12-postgis-3 postgresql-12-postgis-3-scripts -y
 }
 
+apt update && apt upgrade -y
+
+apt install libboost-all-dev git tar unzip wget bzip2 build-essential autoconf libtool libxml2-dev libgeos-dev libgeos++-dev libpq-dev libbz2-dev libproj-dev munin-node munin protobuf-c-compiler libfreetype6-dev libtiff5-dev libicu-dev libgdal-dev libcairo2-dev libcairomm-1.0-dev apache2 apache2-dev libagg-dev liblua5.2-dev ttf-unifont lua5.1 liblua5.1-0-dev postgresql postgresql-contrib postgis -y
 
 if uname -a | grep -i raspberry; then rpi_install; fi
 if uname -a | grep -i ubuntu; then ubuntu_install; fi
