@@ -2,6 +2,9 @@
 # GRUB_CMDLINE_LINUX_DEFAULT="ipv6.disable=1"
 # sudo update-grub
 
+# Static MAC/Interface name
+echo 'options g_ether host_addr='$(dmesg | awk '/: HOST MAC/{print $NF}')' dev_addr='$(dmesg | awk '/: MAC/{print $NF}') | sudo tee /etc/modprobe.d/g_ether.conf
+
 # Change prompt color
 export PS1="\[$(tput bold)$(tput setaf 1)\]\u@\h:\w\$\[$(tput sgr0)\] "
 
