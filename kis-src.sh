@@ -36,6 +36,30 @@ then
 fi
 
 
+#Probe for Ubertooth units
+J=$(lsusb | grep -E -c -i 'Ubertooth One')
+
+if [ $J -gt 0 ]
+then
+	for (( l=0; l<$J; l++ ))
+ 	do
+  		echo 'source=ubertooth-'$l':name=ubertooth-'$l | tee -a /etc/kismet/kismet_site.conf 1>/dev/null 2>/dev/null
+  	done
+fi
+
+
+#Probe for Bluetooth units
+K=$(lsusb | grep -E -c -i 'Bluetooth')
+
+if [ $K -gt 0 ]
+then
+	for (( m=0; m<$J; m++ ))
+ 	do
+  		echo 'source=hci'$m':name=linuxbt'$l | tee -a /etc/kismet/kismet_site.conf 1>/dev/null 2>/dev/null
+  	done
+fi
+
+
 # Probe for GPS units
 H=$(ls -lh /dev | grep -E -c -i 'gps[0-9]')
 I=$(ls -lh /dev | grep -E -c -i 'ttyACM[0-9]')
