@@ -15,9 +15,10 @@ export PS1="\[$(tput bold)$(tput setaf 1)\]\u@\h:\w\$\[$(tput sgr0)\] "
 # alias prompt_red='export PS1="\[$(tput bold)$(tput setaf 1)\]\u@\h:\w\$\[$(tput sgr0)\] "'
 
 sudo apt update && sudo apt upgrade -y
-sudo apt install git vim tree terminator openvpn -y
+sudo apt install git vim tree -y
+#sudo apt install terminator openvpn wireguard -y
 
-cd /opt
-sudo git clone https://github.com/OpenVPN/easy-rsa.git
-sudo chown studentX:studentX /opt/* -R
+#cd /opt
+#sudo git clone https://github.com/OpenVPN/easy-rsa.git
+#sudo chown studentX:studentX /opt/* -R
 
