@@ -30,7 +30,7 @@ then
 			F=$(iw dev | grep -E -m 1 -A 1 -i 'phy#'$j | awk '$1=="Interface"{print $2}')
 			G=$(echo $F | awk '$0=$NF' FS=)
 			#echo $F
-			echo 'source='$F':name=Wifi'$G',channel_hop=true' | tee -a /etc/kismet/kismet_site.conf 1>/dev/null 2>/dev/null
+			echo 'source='$F':name=Wifi'$G',channel_hop=true' | tee -a /etc/kismet/kismet_site.conf &>/dev/null
 		fi
 	done
 fi
@@ -43,7 +43,7 @@ if [ $J -gt 0 ]
 then
 	for (( l=0; l<$J; l++ ))
  	do
-  		echo 'source=ubertooth-'$l':name=ubertooth-'$l | tee -a /etc/kismet/kismet_site.conf 1>/dev/null 2>/dev/null
+  		echo 'source=ubertooth-'$l':name=ubertooth-'$l | tee -a /etc/kismet/kismet_site.conf &>/dev/null
   	done
 fi
 
@@ -55,7 +55,19 @@ if [ $K -gt 0 ]
 then
 	for (( m=0; m<$J; m++ ))
  	do
-  		echo 'source=hci'$m':name=linuxbt'$l | tee -a /etc/kismet/kismet_site.conf 1>/dev/null 2>/dev/null
+  		echo 'source=hci'$m':name=linuxbt'$l | tee -a /etc/kismet/kismet_site.conf &>/dev/null
+  	done
+fi
+
+
+#Probe for RTL-SDR units
+N=$(lsusb | grep -E -c -i 'RTL[[:alnum:]]{4,5}.DVB-T')
+
+if [ $N -gt 0 ]
+then
+	for (( p=0; p<$J; p++ ))
+ 	do
+  		echo 'source=rtl433-'$p':type=rtl433' | tee -a /etc/kismet/kismet_site.conf &>/dev/null
   	done
 fi
 
@@ -66,6 +78,6 @@ I=$(ls -lh /dev | grep -E -c -i 'ttyACM[0-9]')
 
 if [ $H -gt 0 ] || [ $I -gt 0 ]
 then
-	echo 'gps=gpsd:host=localhost,port=2947' | tee -a /etc/kismet/kismet_site.conf 1>/dev/null 2>/dev/null
+	echo 'gps=gpsd:host=localhost,port=2947' | tee -a /etc/kismet/kismet_site.conf &>/dev/null
 fi
 
