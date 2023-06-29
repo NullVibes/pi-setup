@@ -69,6 +69,8 @@ then
  	do
   		echo 'source=rtl433-'$p':type=rtl433' | tee -a /etc/kismet/kismet_site.conf &>/dev/null
   	done
+   	echo 'mask_datasource_type=rtladsb' | tee -a /etc/kismet/kismet_site.conf &>/dev/null
+    	echo 'mask_datasource_type=rtlamr' | tee -a /etc/kismet/kismet_site.conf &>/dev/null
 fi
 
 
