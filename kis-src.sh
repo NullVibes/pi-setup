@@ -17,7 +17,7 @@ fi
 # Add monitor-mode-capable interfaces to kismet_site.conf
 C=$(iw dev | grep -E -c -i 'phy#[0-9]')
 D=$(iw dev | grep -E -m 1 -i 'phy#[0-9]' | sed '$ s/[a-z#]//g')
-echo '' | tee /etc/kismet/kismet_site.conf 1>/dev/null 2>/dev/null
+echo '' | tee /etc/kismet/kismet_site.conf &>/dev/null
 
 if [ $C -ne 0 ]
 then
