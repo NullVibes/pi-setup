@@ -33,6 +33,7 @@ then
 			echo 'source='$F':name=Wifi'$G',channel_hop=true' | tee -a /etc/kismet/kismet_site.conf &>/dev/null
 		fi
 	done
+ 	echo 'source='$F':name=Wifi'$G',channel_hop=true' | tee -a /etc/kismet/kismet_site.conf &>/dev/null
 fi
 
 
