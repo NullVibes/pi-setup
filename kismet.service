@@ -8,7 +8,7 @@ Type=simple
 Restart=always
 RestartSec=1
 ExecStartPre=sudo /etc/kismet/kis-src.sh
-ExecStart=sudo kismet
+ExecStart=sudo kismet --no-ncurses --no-line-wrap
 
 [Install]
 WantedBy=multi-user.target
