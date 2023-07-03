@@ -17,7 +17,7 @@ fi
 # Add monitor-mode-capable interfaces to kismet_site.conf
 C=$(iw dev | grep -E -c -i 'phy#[0-9]')
 D=$(iw dev | grep -E -m 1 -i 'phy#[0-9]' | sed '$ s/[a-z#]//g')
-echo '' | tee /etc/kismet/kismet_site.conf &>/dev/null
+#echo 'mask_datasource_type=rtlamr' | tee /etc/kismet/kismet_site.conf &>/dev/null
 
 if [ $C -ne 0 ]
 then
@@ -50,13 +50,13 @@ fi
 
 
 #Probe for Bluetooth units
-K=$(lsusb | grep -E -c -i 'Bluetooth')
+K=$(hcitool dev | grep -E -c -i 'hci')
 
 if [ $K -gt 0 ]
 then
-	for (( m=0; m<$J; m++ ))
+ 	for (( m=0; m<$K; m++ ))
  	do
-  		echo 'source=hci'$m':name=linuxbt'$l | tee -a /etc/kismet/kismet_site.conf &>/dev/null
+  		echo 'source=hci'$m':name=linuxbt'$m',type=linuxbluetooth' | tee -a /etc/kismet/kismet_site.conf &>/dev/null
   	done
 fi
 
@@ -66,7 +66,7 @@ N=$(lsusb | grep -E -c -i 'RTL[[:alnum:]]{4,5}.DVB-T')
 
 if [ $N -gt 0 ]
 then
-	for (( p=0; p<$J; p++ ))
+	for (( p=0; p<$N; p++ ))
  	do
   		echo 'source=rtl433-'$p':type=rtl433' | tee -a /etc/kismet/kismet_site.conf &>/dev/null
   	done
