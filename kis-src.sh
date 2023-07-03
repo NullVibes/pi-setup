@@ -17,7 +17,7 @@ fi
 # Add monitor-mode-capable interfaces to kismet_site.conf
 C=$(iw dev | grep -E -c -i 'phy#[0-9]')
 D=$(iw dev | grep -E -m 1 -i 'phy#[0-9]' | sed '$ s/[a-z#]//g')
-#echo 'mask_datasource_type=rtlamr' | tee /etc/kismet/kismet_site.conf &>/dev/null
+#echo 'mask_datasource_name=wlan0' | tee /etc/kismet/kismet_site.conf &>/dev/null
 
 if [ $C -ne 0 ]
 then
