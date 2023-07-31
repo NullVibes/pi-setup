@@ -1,5 +1,6 @@
 #!/bin/bash
 
+cat /dev/null | sudo tee /etc/kismet/kismet_site.conf
 # Remove interfaces already in monitor mode.
 A=$(ip a | grep -E -c -i 'wlan[0-9]mon')
 
@@ -9,7 +10,7 @@ then
 	do
 		B=$(ip a | grep -E -m 1 -i 'wlan[0-9]mon' | awk '{print substr($2,1,length($2)-1)}')
 		iw dev $B del
-		# Add error-handling here for when the device can't (won't) be deleted.
+		# Add error-handling here for when the device can't (or won't) be deleted.
 	done
 fi
 
@@ -30,10 +31,13 @@ then
 			F=$(iw dev | grep -E -m 1 -A 1 -i 'phy#'$j | awk '$1=="Interface"{print $2}')
 			G=$(echo $F | awk '$0=$NF' FS=)
 			#echo $F
-			echo 'source='$F':name=Wifi'$G',channel_hop=true' | tee -a /etc/kismet/kismet_site.conf &>/dev/null
+   			CHECKWIFI=$(sudo grep -c "source=$F:name=Wifi$G,channel_hop=true" /etc/kismet/kismet_site.conf)
+      			if [[ $CHECKWIFI -eq 0 || $CHECKWIFI == "" ]]; then
+				echo 'source='$F':name=Wifi'$G',channel_hop=true' | tee -a /etc/kismet/kismet_site.conf &>/dev/null
+    			fi
 		fi
 	done
- 	echo 'source='$F':name=Wifi'$G',channel_hop=true' | tee -a /etc/kismet/kismet_site.conf &>/dev/null
+ 	#echo 'source='$F':name=Wifi'$G',channel_hop=true' | tee -a /etc/kismet/kismet_site.conf &>/dev/null
 fi
 
 
