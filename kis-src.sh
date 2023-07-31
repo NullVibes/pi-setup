@@ -85,6 +85,6 @@ I=$(ls -lh /dev | grep -E -c -i 'ttyACM[0-9]')
 
 if [ $H -gt 0 ] || [ $I -gt 0 ]
 then
-	echo 'gps=gpsd:host=localhost,port=2947' | tee -a /etc/kismet/kismet_site.conf &>/dev/null
+	echo 'gps=gpsd:host=localhost,port=2947,reconnect=true' | tee -a /etc/kismet/kismet_site.conf &>/dev/null
 fi
 
