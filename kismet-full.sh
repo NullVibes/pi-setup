@@ -19,17 +19,18 @@ if [[ $DISTID == "Ubuntu" ]]; then
   elif [[ $CODENAME == "jammy" ]]; then
     echo 'deb [signed-by=/usr/share/keyrings/kismet-archive-keyring.gpg] https://www.kismetwireless.net/repos/apt/git/jammy jammy main' | sudo tee /etc/apt/sources.list.d/kismet.list >/dev/null
   fi
+  sudo apt install linux-headers-generic -y
 elif [[ $DISTID == "Raspbian" ]]; then
   if [[ $CODENAME == "bullseye" ]]; then
     echo 'deb [signed-by=/usr/share/keyrings/kismet-archive-keyring.gpg] https://www.kismetwireless.net/repos/apt/git/bullseye bullseye main' | sudo tee /etc/apt/sources.list.d/kismet.list >/dev/null
   elif [[ $CODENAME == "bookworm" ]]; then
     echo 'deb [signed-by=/usr/share/keyrings/kismet-archive-keyring.gpg] https://www.kismetwireless.net/repos/apt/git/bookworm bookworm main' | sudo tee /etc/apt/sources.list.d/kismet.list >/dev/null
   fi
-  sudo apt install raspberrypi-kernel-headers build-essential
+  sudo apt install raspberrypi-kernel-headers -y
 fi
 
 sudo apt update
-sudo apt install vim dkms bluez gpsd gpsd-clients kismet tcpdump rtl-sdr rtl-433 -y
+sudo apt install build-essential vim dkms bluez gpsd gpsd-clients kismet tcpdump rtl-sdr rtl-433 -y
 sudo usermod -aG kismet $(`whoami`)
 sudo cp kis-src.sh /etc/kismet
 sudo chmod +x /etc/kismet/kis-src.sh
