@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Sleep is REQUIRED to give devices enough to time to be recognized by the OS
-sleep 5
+# Sleep is REQUIRED to give devices (GPS!)enough to time to be recognized by the OS
+sleep 30
 SITE='/etc/kismet/kismet_site.conf'
 
 # Remove interfaces already in monitor mode.
@@ -9,6 +9,11 @@ cat /dev/null | tee $SITE &>/dev/null
 
 echo 'server_name=Kismet' | tee -a $SITE &>/dev/null
 echo 'server_description=Mobile' | tee -a $SITE &>/dev/null
+
+# Remote capture sources (optional)
+echo 'remote_capture_enable=true' | tee -a $SITE &>/dev/null
+echo 'remote_capture_listen=0.0.0.0' | tee -a $SITE &>/dev/null
+echo 'remote_capture_port=3501' | tee -a $SITE &>/dev/null
 
 A=$(ip a | grep -E -c -i 'wlan[0-9]mon')
 
