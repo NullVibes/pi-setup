@@ -2,6 +2,7 @@
 
 DISTID=$(lsb_release -a | grep "Distributor ID" | awk '{print $3}')
 CODENAME=$(lsb_release -a | grep "Codename" | awk '{print $2}')
+RASPICONFPATH=$(which raspi-config)
 
 echo "This installer will build the -NIGHTLY- (most up-to-date) package from Git." 
 read -p "Continue? (Y/n): " -n1 CONT
@@ -35,13 +36,13 @@ sudo cp kis-src.sh /etc/kismet
 sudo chmod +x /etc/kismet/kis-src.sh
 sudo cp kismet.service /etc/systemd/system
 sudo systemctl daemon-reload
-sudo systemctl enable kismet.service
+#sudo systemctl enable kismet.service
 
 cd /opt
 git clone -b v5.6.4.2 https://github.com/aircrack-ng/rtl8812au.git
 cd rtl*
 
-if [[ $DISTID == "Debian" ]]; then
+if [ $DISTID == "Debian" ] && [ $RASPICONFPATH == "/usr/bin/raspi-config" ]; then
   sudo sed -i 's/CONFIG_PLATFORM_I386_PC = y/CONFIG_PLATFORM_I386_PC = n/g' Makefile
   sudo sed -i 's/CONFIG_PLATFORM_ARM64_RPI = n/CONFIG_PLATFORM_ARM64_RPI = y/g' Makefile
 fi
@@ -52,4 +53,7 @@ pip install gpsd-py3 google-api-python-client
 pip install --upgrade "protobuf<=3.20.1"
 cd /opt
 git clone https://github.com/ckoval7/kisStatic2Mobile.git
-cd kisStatic2Mobile
+
+echo ''
+echo 'kismet.service is currently DEACTIVATED.'
+echo 'To enable:  sudo systemctl enable kismet.service'
