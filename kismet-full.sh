@@ -4,7 +4,7 @@ DISTID=$(lsb_release -a | grep "Distributor ID" | awk '{print $3}')
 CODENAME=$(lsb_release -a | grep "Codename" | awk '{print $2}')
 
 echo "This installer will build the -NIGHTLY- (most up-to-date) package from Git." 
-read -p -n1 "Continue? (Y/n): " CONT
+read -p "Continue? (Y/n): " -n1 CONT
 
 if [[ $CONT == "n" ]]; then
   exit
