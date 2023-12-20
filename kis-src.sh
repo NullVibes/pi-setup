@@ -79,9 +79,9 @@ if [ $N -gt 0 ]
 then
 	for (( p=0; p<$N; p++ ))
  	do
-  		if [ $($Q'315Hz' $SITE) -eq 0 ], then
+  		if [ $($Q'315Hz' $SITE) -eq 0 ]; then
   			echo 'source=rtl433-'$p':type=rtl433,channel=315MHz' | tee -a /etc/kismet/kismet_site.conf &>/dev/null
-     		elif [ $($Q'433Hz' $SITE) -eq 0 ], then
+     		elif [ $($Q'433Hz' $SITE) -eq 0 ]; then
        			echo 'source=rtl433-'$p':type=rtl433,channel=433MHz' | tee -a /etc/kismet/kismet_site.conf &>/dev/null
 	  	else
     			:
