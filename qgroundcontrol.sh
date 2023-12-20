@@ -1,7 +1,9 @@
 #!/bin/bash
 
 sudo apt update
-sudo apt install speech-dispatcher libudev-dev libsdl2-dev patchelf build-essential curl -y
+sudo apt install speech-dispatcher libudev-dev libsdl2-dev patchelf build-essential curl qmake gcc -y
 cd /opt
-sudo wget https://download.qt.io/official_releases/qt/5.15/5.15.2/single/qt-everywhere-src-5.15.2.tar.xz
-cd qt-*
+sudo git clone --recursive -j8 https://github.com/mavlink/qgroundcontrol.git
+sudo git submodule update --recursive
+cd qgroundcontrol
+
