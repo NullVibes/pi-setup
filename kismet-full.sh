@@ -31,7 +31,7 @@ fi
 
 sudo apt update
 sudo apt install build-essential vim dkms bluez gpsd gpsd-clients kismet tcpdump rtl-sdr rtl-433 -y
-sudo usermod -aG kismet $(`whoami`)
+sudo usermod -aG kismet $(whoami)
 sudo cp kis-src.sh /etc/kismet
 sudo chmod +x /etc/kismet/kis-src.sh
 sudo cp kismet.service /etc/systemd/system
