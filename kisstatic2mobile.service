@@ -1,0 +1,14 @@
+[Unit]
+Description=kisStatic2mobile Service
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=5
+#ExecStartPre=
+ExecStart=sudo python3 /opt/kisstatic2mobile.py --send 172.16.1.8:3501
+
+[Install]
+WantedBy=multi-user.target
