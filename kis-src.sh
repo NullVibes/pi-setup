@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Sleep is REQUIRED to give devices enough to time to be recognized by the OS
-sleep 20
+sleep 5
 SITE='/etc/kismet/kismet_site.conf'
 
 # Remove interfaces already in monitor mode.
