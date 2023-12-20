@@ -1,0 +1,14 @@
+[Unit]
+Description=mavp2p Service
+After=network.target kismet.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=5
+#ExecStartPre=sudo /etc/kismet/kis-src.sh
+ExecStart=
+
+[Install]
+WantedBy=multi-user.target
