@@ -1,0 +1,14 @@
+[Unit]
+Description=Kismet-Remote Service
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=5
+#ExecStartPre=
+ExecStart=
+
+[Install]
+WantedBy=multi-user.target
