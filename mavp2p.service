@@ -7,8 +7,8 @@ StartLimitIntervalSec=0
 Type=simple
 Restart=always
 RestartSec=5
-#ExecStartPre=sudo /etc/kismet/kis-src.sh
-ExecStart=
+#ExecStartPre=
+ExecStart=./mavp2p serial:/dev/ttyAMA0:57600 udps:0.0.0.0:5600
 
 [Install]
 WantedBy=multi-user.target
