@@ -7,8 +7,8 @@ StartLimitIntervalSec=0
 Type=simple
 Restart=always
 RestartSec=5
-#ExecStartPre=
-ExecStart=sudo python3 /opt/kisstatic2mobile.py --send 172.16.1.8:3501
+ExecStartPre=sudo /etc/kismet/./kis-src.sh
+ExecStart=sudo python3 /opt/pi-scripts/kisstatic2mobile.py --send 172.16.1.8:3501
 
 [Install]
 WantedBy=multi-user.target
