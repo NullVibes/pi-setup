@@ -11,29 +11,32 @@ if [[ $CONT == "n" ]]; then
   exit
 fi
 
-wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key --quiet | gpg --dearmor | sudo tee /usr/share/keyrings/kismet-archive-keyring.gpg >/dev/null
+wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key --quiet | gpg --dearmor | sudo tee /usr/share/keyrings/kismet-archive-keyring.gpg
 
 if [[ $DISTID == *"Ubuntu"* ]]; then
+  echo 'Ubuntu detected...'
   if [[ $CODENAME == *"focal"* ]]; then
-    echo 'deb [signed-by=/usr/share/keyrings/kismet-archive-keyring.gpg] https://www.kismetwireless.net/repos/apt/git/focal focal main' | sudo tee /etc/apt/sources.list.d/kismet.list >/dev/null
+    echo 'deb [signed-by=/usr/share/keyrings/kismet-archive-keyring.gpg] https://www.kismetwireless.net/repos/apt/git/focal focal main' | sudo tee /etc/apt/sources.list.d/kismet.list &>/dev/null
   elif [[ $CODENAME == *"jammy"* ]]; then
-    echo 'deb [signed-by=/usr/share/keyrings/kismet-archive-keyring.gpg] https://www.kismetwireless.net/repos/apt/git/jammy jammy main' | sudo tee /etc/apt/sources.list.d/kismet.list >/dev/null
+    echo 'deb [signed-by=/usr/share/keyrings/kismet-archive-keyring.gpg] https://www.kismetwireless.net/repos/apt/git/jammy jammy main' | sudo tee /etc/apt/sources.list.d/kismet.list &>/dev/null
   fi
-  sudo apt install linux-headers-generic -y 1> /dev/null
-elif [[ $DISTID == *"Debian"* ]] || [[ $RASPICONFPATH != *"/usr/bin/raspi-config"* ]]; then
+  sudo apt install linux-headers-generic -y
+elif [[ $DISTID == *"Debian"* ]] && [[ $RASPICONFPATH != *"/usr/bin/raspi-config"* ]]; then
+  echo 'Debian detected...'
   if [[ $CODENAME == *"bullseye"* ]]; then
-    echo 'deb [signed-by=/usr/share/keyrings/kismet-archive-keyring.gpg] https://www.kismetwireless.net/repos/apt/git/bullseye bullseye main' | sudo tee /etc/apt/sources.list.d/kismet.list >/dev/null
+    echo 'deb [signed-by=/usr/share/keyrings/kismet-archive-keyring.gpg] https://www.kismetwireless.net/repos/apt/git/bullseye bullseye main' | sudo tee /etc/apt/sources.list.d/kismet.list &>/dev/null
   elif [[ $CODENAME == *"bookworm"* ]]; then
-    echo 'deb [signed-by=/usr/share/keyrings/kismet-archive-keyring.gpg] https://www.kismetwireless.net/repos/apt/git/bookworm bookworm main' | sudo tee /etc/apt/sources.list.d/kismet.list >/dev/null
+    echo 'deb [signed-by=/usr/share/keyrings/kismet-archive-keyring.gpg] https://www.kismetwireless.net/repos/apt/git/bookworm bookworm main' | sudo tee /etc/apt/sources.list.d/kismet.list &>/dev/null
   fi
-  sudo apt install linux-headers-generic -y 1> /dev/null
-elif [[ $DISTID == *"Raspbian"* ]] || [[ $RASPICONFPATH == *"/usr/bin/raspi-config"* ]]; then
+  sudo apt install linux-headers-generic -y
+elif [[ $RASPICONFPATH == "/usr/bin/raspi-config" ]]; then
+  echo 'RaspberryPi detected...'
   if [[ $CODENAME == *"bullseye"* ]]; then
-    echo 'deb [signed-by=/usr/share/keyrings/kismet-archive-keyring.gpg] https://www.kismetwireless.net/repos/apt/git/bullseye bullseye main' | sudo tee /etc/apt/sources.list.d/kismet.list >/dev/null
+    echo 'deb [signed-by=/usr/share/keyrings/kismet-archive-keyring.gpg] https://www.kismetwireless.net/repos/apt/git/bullseye bullseye main' | sudo tee /etc/apt/sources.list.d/kismet.list &>/dev/null
   elif [[ $CODENAME == *"bookworm"* ]]; then
-    echo 'deb [signed-by=/usr/share/keyrings/kismet-archive-keyring.gpg] https://www.kismetwireless.net/repos/apt/git/bookworm bookworm main' | sudo tee /etc/apt/sources.list.d/kismet.list >/dev/null
+    echo 'deb [signed-by=/usr/share/keyrings/kismet-archive-keyring.gpg] https://www.kismetwireless.net/repos/apt/git/bookworm bookworm main' | sudo tee /etc/apt/sources.list.d/kismet.list &>/dev/null
   fi
-  sudo apt install raspberrypi-kernel-headers -y 1> /dev/null
+  sudo apt install raspberrypi-kernel-headers -y
 fi
 
 sudo apt update
