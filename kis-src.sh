@@ -50,7 +50,7 @@ then
    			CHECKWIFI=$(sudo grep -c "source=$F:name=wlan$G,channel_hop=true" $SITE)
       			if [[ $CHECKWIFI -eq 0 || $CHECKWIFI == "" ]]; then
 				echo 'source='$F':name=wlan'$G',channel_hop=true' | tee -a $SITE &>/dev/null
-    				echo 'kismet_cap_linux_wifi --connect 127.0.0.1:3500 --tcp --fixed-gps 39.5,-75.5 --source=wlan'$F':name=Wifi'$G',type=linuxwifi,channel_hop=true &' | tee -a $REMOTE &> /dev/null
+    				echo 'kismet_cap_linux_wifi --connect 127.0.0.1:3500 --tcp --fixed-gps 39.5,-75.5 --source=wlan'$F':name=Wifi'$G',type=linuxwifi,channel_hop=true --daemonize' | tee -a $REMOTE &> /dev/null
     			fi
 		fi
 	done
@@ -78,7 +78,7 @@ then
  	for (( m=0; m<$K; m++ ))
  	do
   		echo 'source=hci'$m':name=linuxbt'$m',type=linuxbluetooth' | tee -a $SITE &>/dev/null
-    		echo 'kismet_cap_linux_bluetooth --connect 127.0.0.1:3500 --tcp --fixed-gps 39.5,-75.5 --source=hci'$m':name=hci'$m',type=linuxbt &' | tee -a $REMOTE &> /dev/null
+    		echo 'kismet_cap_linux_bluetooth --connect 127.0.0.1:3500 --tcp --fixed-gps 39.5,-75.5 --source=hci'$m':name=hci'$m',type=linuxbt --daemonize' | tee -a $REMOTE &> /dev/null
 	done
 fi
 
