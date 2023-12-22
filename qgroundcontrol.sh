@@ -6,11 +6,15 @@
 sudo apt update
 sudo usermod -a -G dialout $USER
 sudo apt remove modemmanager -y
-sudo apt install speech-dispatcher libudev-dev libsdl2-dev patchelf build-essential curl gcc qtcreator openjdk-11-jdk-headless -y
+sudo apt install speech-dispatcher libudev-dev libsdl2-dev patchelf build-essential curl gcc qtcreator qt5-qmake-bin openjdk-11-jdk-headless -y
 sudo apt install gstreamer1.0-plugins-bad gstreamer1.0-libav gstreamer1.0-gl libqt5gui5 libfuse2 -y
 
 cd /opt
-sudo git clone --recursive -j8 https://github.com/mavlink/qgroundcontrol.git
+if [[ -d /opt/qgroundcontrol ]]; then
+  :
+else
+  sudo git clone --recursive -j8 https://github.com/mavlink/qgroundcontrol.git
+fi
 cd qgroundcontrol
 sudo git submodule update --recursive
 echo -e "DEFINES += DISABLE_AIRMAP\r\n" | tee user_config.pri
