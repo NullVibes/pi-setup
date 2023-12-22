@@ -66,6 +66,7 @@ then
 	for (( l=0; l<$J; l++ ))
  	do
   		echo 'source=ubertooth-'$l':name=ubertooth-'$l | tee -a $SITE &>/dev/null
+    		echo 'kismet_cap_ubertooth_one --connect 127.0.0.1:3500 --tcp --fixed-gps 39.5,-75.5 --source=ubertooth-'$l':name=ubertooth-'$l',type=ubertooth --daemonize' | tee -a $REMOTE &> /dev/null
   	done
 fi
 
