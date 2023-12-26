@@ -3,7 +3,7 @@ from guizero import App, TextBox, PushButton, Text, Box
 import os, subprocess
 
 def btnA():
-    label.value = "Hunting for  XYZ List"
+    label.value = "Hunting for XYZ List"
     txtBox1.show()
     txtBox1.bg="white"
     button1.hide()
