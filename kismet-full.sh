@@ -10,6 +10,12 @@ echo ""
 echo "This installer will build the -NIGHTLY- (most up-to-date) package from Git." 
 read -p "Continue? (Y/n): " -n1 CONT
 
+if [[ -d /opt/kismet ]]; then
+  :
+else
+  sudo mkdir /opt/kismet
+fi
+
 if [[ $CONT == "n" ]]; then
   exit
 fi
