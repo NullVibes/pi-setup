@@ -12,6 +12,8 @@ echo '#!/bin/bash' | tee -a $REMOTE &>/dev/null
 
 echo 'server_name=Kismet' | tee -a $SITE &>/dev/null
 echo 'server_description=Mobile' | tee -a $SITE &>/dev/null
+echo 'log_prefix=/opt/kismet' | tee -a $SITE &>/dev/null
+echo 'log_types=kismet' | tee -a $SITE &>/dev/null
 
 # Remote capture sources (optional)
 echo 'remote_capture_enable=true' | tee -a $SITE &>/dev/null
