@@ -11,7 +11,7 @@ def btnA():
     button2.visible=False
     button2.height=0
     button3.visible=True
-    result = subprocess.run(["ls","-l"], capture_output=True, text=True)
+    result = subprocess.run(["ls","-l", "/dev/null"], capture_output=True, text=True)
     txtBox1.command = result
     print(result.stdout)
 
