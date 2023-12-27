@@ -54,7 +54,7 @@ sudo apt install build-essential vim dkms bluez gpsd gpsd-clients kismet tcpdump
 sudo usermod -aG kismet $USER
 sudo cp kis-src.sh /etc/kismet
 sudo chmod +x /etc/kismet/kis-src.sh
-sudo chmod +x /opt/pi-scripts/*.sh
+sudo chmod +x /opt/pi-setup/*.sh
 sudo cp kismet.service /etc/systemd/system
 sudo cp kisstatic2mobile.service /etc/systemd/system
 sudo systemctl daemon-reload
