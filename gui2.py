@@ -34,16 +34,22 @@ def app_layout(self):
     self.button[i+1].config(bg="#22303C", fg="#888888", highlightthickness=2, highlightbackground="orange", highlightcolor="orange")
     self.button[i+1].grid(row=2, column=0, columnspan=(i+1), sticky=E+W, pady=2, padx=10, ipadx=2, ipady=2)
     
+def app1():
+    uhfdir = "/home/ubuntu/UHFNew_Sweep"
+    if os.path.exists(uhfdir + "uhf_sweep.csv") == True:
+        result = subprocess.run(["tail -n1 " + UHFDIR + " /uhf_sweep.csv | cut -d',' -f5"], shell=True, capture_output=True, text=True)
+        lstBox1.insert(END, str(result.stdout))
+        window.after(1000, app1)  # run again after 1000ms (1s)
+    else:
+        lstBox1.insert(END, str("Input File Not Found"))
 
 def open_app(appNum):
     cMenu.pack_forget()
-    #Can we just app[appNum]() ?
     
     if appNum == 0:
         cApp1.pack()
         cApp2.pack_forget()
-        result = subprocess.run(["ls","-l", "/dev/null"], capture_output=True, text=True)
-        lstBox1.insert(END, str(result.stdout))
+        window.after(1000, app1)  # run again after 1000ms (1s)
     elif appNum == 1:
         cApp2.pack()
         cApp1.pack_forget()
