@@ -15,7 +15,7 @@ def app_layout(self):
     cApp2.pack_forget()
     self.button = []
     self.label = []
-    appList = ["EPC\nHunter", "Kismet", "Option 3"]
+    appList = ["UHF\nSweep", "Kismet", "Option 3"]
     x = 0
 
     # Dynamically add button objects to the canvas, based on the items in appList[]
