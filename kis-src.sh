@@ -95,10 +95,10 @@ then
  	do
   		if [ $($Q'315Hz' $SITE) -eq 0 ]; then
   			echo 'source=rtl433-'$p':type=rtl433,channel=315MHz' | tee -a /etc/kismet/kismet_site.conf &>/dev/null
-     			echo 'kismet_cap_linux_bluetooth --connect 127.0.0.1:3500 --tcp --fixed-gps 39.5,-75.5 --source=source=rtl433-'$p':name=rtl433-'$p',type=rtl433,channel=315MHz --daemonize' | tee -a $REMOTE &> /dev/null
+     			echo 'kismet_cap_sdr_rtl433 --connect 127.0.0.1:3500 --tcp --fixed-gps 39.5,-75.5 --source=source=rtl433-'$p':name=rtl433-'$p',type=rtl433,channel=315MHz --daemonize' | tee -a $REMOTE &> /dev/null
      		elif [ $($Q'433Hz' $SITE) -eq 0 ]; then
        			echo 'source=rtl433-'$p':type=rtl433,channel=433MHz' | tee -a /etc/kismet/kismet_site.conf &>/dev/null
-	  		echo 'kismet_cap_linux_bluetooth --connect 127.0.0.1:3500 --tcp --fixed-gps 39.5,-75.5 --source=source=rtl433-'$p':name=rtl433-'$p',type=rtl433,channel=433.92MHz --daemonize' | tee -a $REMOTE &> /dev/null
+	  		echo 'kismet_cap_sdr_rtl433 --connect 127.0.0.1:3500 --tcp --fixed-gps 39.5,-75.5 --source=source=rtl433-'$p':name=rtl433-'$p',type=rtl433,channel=433.92MHz --daemonize' | tee -a $REMOTE &> /dev/null
 	  	else
     			:
        		fi
@@ -117,3 +117,4 @@ then
 	echo 'gps=gpsd:host=localhost,port=2947,reconnect=true' | tee -a /etc/kismet/kismet_site.conf &>/dev/null
 fi
 
+sudo chmod +x $REMOTE
