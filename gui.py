@@ -2,6 +2,7 @@
 # Written by NullVibes
 
 from tkinter import *
+from tkinter import ttk
 import os, subprocess
 
 def hide(widget):
@@ -28,6 +29,10 @@ def app_layout(self):
     self.label.append(Label(self, text='', width=10, height=1, bd='0'))
     self.label[0].config(bg="#22303C", highlightthickness=0, borderwidth=0)
     self.label[0].grid(row=1, column=0, columnspan=(i+1), sticky=E+W, pady=2, padx=10, ipadx=2, ipady=2)
+
+    s = ttk.Style()
+    s.configure('TSeparator', background='#5daed7')
+    ttk.Separator(master=self, orient='horizontal', style='TSeparator').grid(row=2, column=0, columnspan=(i+1), sticky=E+W, pady=0, padx=5, ipadx=0, ipady=0)
     
     # Add the actual Help button
     self.button.append(Button(self, text='Help ?', width=10, height=1, bd='0', command=window.destroy))
