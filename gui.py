@@ -20,7 +20,7 @@ def app_layout(self):
 
     # Dynamically add button objects to the canvas, based on the items in appList[]
     for i in range(len(appList)):
-        self.button.append(Button(self, text=appList[i], width=10, height=10, bd='0', command=lambda i=i: open_app(i)))
+        self.button.append(Button(self, text=appList[i], width=5%, height=5%, bd='0', command=lambda i=i: open_app(i)))
         self.button[i].config(bg="#22303C", fg="#888888", highlightthickness=2, highlightbackground="orange", highlightcolor="orange")
         self.button[i].grid(row=0, column=i, sticky=N+E+S+W, pady=2, padx=10, ipadx=2, ipady=2)
 
