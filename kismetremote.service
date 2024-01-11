@@ -7,8 +7,8 @@ StartLimitIntervalSec=0
 Type=simple
 Restart=always
 RestartSec=5
-ExecStartPre=sudo /opt/pi-scripts/./kis-src.sh
-ExecStart=sudo /opt/pi-scripts/./kismet-remote.sh
+ExecStartPre=sudo /opt/pi-setup/./kis-src.sh
+ExecStart=sudo /opt/pi-setup/./kismet-remote.sh
 
 [Install]
 WantedBy=multi-user.target
