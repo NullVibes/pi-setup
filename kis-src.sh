@@ -3,7 +3,7 @@
 # Sleep is REQUIRED to give devices (GPS!)enough to time to be recognized by the OS
 sleep 30
 SITE='/etc/kismet/kismet_site.conf'
-REMOTE='/opt/pi-scripts/./kismet-remote.sh'
+REMOTE='/opt/pi-setup/kismet-remote.sh'
 
 # Remove interfaces already in monitor mode.
 cat /dev/null | tee $SITE &>/dev/null
@@ -94,17 +94,17 @@ then
 	for (( p=0; p<$N; p++ ))
  	do
   		if [ $($Q'315Hz' $SITE) -eq 0 ]; then
-  			echo 'source=rtl433-'$p':type=rtl433,channel=315MHz' | tee -a /etc/kismet/kismet_site.conf &>/dev/null
+  			echo 'source=rtl433-'$p':type=rtl433,channel=315MHz' | tee -a $SITE &>/dev/null
      			echo 'kismet_cap_sdr_rtl433 --connect 127.0.0.1:3500 --tcp --fixed-gps 39.5,-75.5 --source=source=rtl433-'$p':name=rtl433-'$p',type=rtl433,channel=315MHz --daemonize' | tee -a $REMOTE &> /dev/null
      		elif [ $($Q'433Hz' $SITE) -eq 0 ]; then
-       			echo 'source=rtl433-'$p':type=rtl433,channel=433MHz' | tee -a /etc/kismet/kismet_site.conf &>/dev/null
+       			echo 'source=rtl433-'$p':type=rtl433,channel=433MHz' | tee -a $SITE &>/dev/null
 	  		echo 'kismet_cap_sdr_rtl433 --connect 127.0.0.1:3500 --tcp --fixed-gps 39.5,-75.5 --source=source=rtl433-'$p':name=rtl433-'$p',type=rtl433,channel=433.92MHz --daemonize' | tee -a $REMOTE &> /dev/null
 	  	else
     			:
        		fi
   	done
-   	echo 'mask_datasource_type=rtladsb' | tee -a /etc/kismet/kismet_site.conf &>/dev/null
-    	echo 'mask_datasource_type=rtlamr' | tee -a /etc/kismet/kismet_site.conf &>/dev/null
+   	echo 'mask_datasource_type=rtladsb' | tee -a $SITE &>/dev/null
+    	echo 'mask_datasource_type=rtlamr' | tee -a $SITE &>/dev/null
 fi
 
 
@@ -114,7 +114,7 @@ I=$(ls -lh /dev | grep -E -c -i 'ttyACM[0-9]')
 
 if [ $H -gt 0 ] || [ $I -gt 0 ]
 then
-	echo 'gps=gpsd:host=localhost,port=2947,reconnect=true' | tee -a /etc/kismet/kismet_site.conf &>/dev/null
+	echo 'gps=gpsd:host=localhost,port=2947,reconnect=true' | tee -a $SITE &>/dev/null
 fi
 
 sudo chmod +x $REMOTE
