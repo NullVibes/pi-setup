@@ -7,7 +7,7 @@ StartLimitIntervalSec=0
 Type=simple
 Restart=always
 RestartSec=1
-ExecStartPre=sudo /etc/kismet/kis-src.sh
+ExecStartPre=sudo /opt/pi-scripts/./kis-src.sh
 ExecStart=sudo kismet --no-ncurses --no-line-wrap
 
 [Install]
