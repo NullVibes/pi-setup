@@ -3,7 +3,7 @@
 # Sleep is REQUIRED to give devices (GPS!)enough to time to be recognized by the OS
 sleep 30
 SITE='/etc/kismet/kismet_site.conf'
-REMOTE='/etc/kismet/kismet_remote.sh'
+REMOTE='/opt/pi-scripts/./kismet-remote.sh'
 
 # Remove interfaces already in monitor mode.
 cat /dev/null | tee $SITE &>/dev/null
