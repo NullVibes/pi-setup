@@ -35,7 +35,7 @@ def app_layout(self):
     self.button[i+1].grid(row=2, column=0, columnspan=(i+1), sticky=E+W, pady=2, padx=10, ipadx=2, ipady=2)
     
 def app1():
-    uhfdir = "/home/ubuntu/UHFNew_Sweep"
+    uhfdir = "/opt/UHF-Sweep"
     if os.path.exists(uhfdir + "uhf_sweep.csv") == True:
         result = subprocess.run(["tail -n1 " + UHFDIR + " /uhf_sweep.csv | cut -d',' -f5"], shell=True, capture_output=True, text=True)
         lstBox1.insert(END, str(result.stdout))
