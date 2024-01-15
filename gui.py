@@ -43,13 +43,12 @@ def app1():
     uhfdir = "/opt/UHF-Sweep/"
     if os.path.exists(uhfdir + "uhf-sweep.sh") == True:
         subprocess.run(["sudo " + uhfdir + " ./uhf-sweep.sh"], shell=True, capture_output=True, text=True)
-        
-    if os.path.exists(uhfdir + "uhf_sweep.csv") == True:
-        result = subprocess.run(["tail -n1 " + uhfdir + " uhf_sweep.csv | cut -d',' -f5"], shell=True, capture_output=True, text=True)
-        lstBox1.insert(END, str(result.stdout))
-        window.after(1000, app1)  # run again after 1000ms (1s)
-    else:
-        lstBox1.insert(END, str("Input File Not Found"))
+        if os.path.exists(uhfdir + "uhf_sweep.csv") == True:
+            result = subprocess.run(["tail -n1 " + uhfdir + " uhf_sweep.csv | cut -d',' -f5"], shell=True, capture_output=True, text=True)
+            lstBox1.insert(END, str(result.stdout))
+            window.after(1000, app1)  # run again after 1000ms (1s)
+        else:
+            lstBox1.insert(END, str("Input File Not Found"))
 
 def open_app(appNum):
     cMenu.pack_forget()
