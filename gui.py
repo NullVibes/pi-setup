@@ -42,7 +42,7 @@ def app_layout(self):
 def app1():
     uhfdir = "/opt/UHF-Sweep/"
     if os.path.exists(uhfdir + "uhf-sweep.sh") == True:
-        result = subprocess.run(["sudo " + uhfdir + " /./uhf-sweep.sh"], shell=True, capture_output=True, text=True)
+        subprocess.run(["sudo " + uhfdir + " /./uhf-sweep.sh"], shell=True, capture_output=True, text=True)
         
     if os.path.exists(uhfdir + "uhf_sweep.csv") == True:
         result = subprocess.run(["tail -n1 " + uhfdir + " uhf_sweep.csv | cut -d',' -f5"], shell=True, capture_output=True, text=True)
@@ -92,7 +92,7 @@ cApp2.pack_forget()
 cApp1 = Canvas(window, height=400, width=800, bg="#22303C", bd='0', borderwidth=0, highlightthickness=0)
 cApp1.place(x=0, y=0)
 
-lstBox1 = Listbox(cApp1, height=3, width=100, bd='0')
+lstBox1 = Listbox(cApp1, height=3, width=50, bd='0')
 #lstBox1.pack(side = LEFT, fill = BOTH)
 scrollbar1 = Scrollbar(cApp1)
 #scrollbar1.pack(side = RIGHT, fill = BOTH)
