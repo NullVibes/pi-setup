@@ -45,9 +45,9 @@ def app1():
         subprocess.run(["sudo " + uhfdir + "./uhf-sweep.sh"], shell=True, capture_output=True, text=True)
         if os.path.exists(uhfdir + "uhf_sweep.csv") == True:
             LAST_TAG = subprocess.run(["tail -n1 " + uhfdir + "uhf_sweep.csv | cut -d',' -f5"], shell=True, capture_output=True, text=True)
-            print(LAST_TAG)
+            print(str(LAST_TAG.stdout[:-1]))
             for i, lstBox1_item in enumerate(lstBox1.get(0, END)):
-                if lstBox1_item == LAST_TAG:
+                if lstBox1_item == str(LAST_TAG.stdout[:-1]):
                     pass
                 else:
                     lstBox1.insert(END, str(LAST_TAG.stdout[:-1]))
