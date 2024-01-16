@@ -48,12 +48,12 @@ def app1():
             #print(LAST_TAG)
             ALL_TAGS = lstBox1.get(0, END)
             if len(ALL_TAGS) > 0:
-            for i in ALL_TAGS:
-                print(i)
-                if LAST_TAG == i:
-                    print(LAST_TAG)
-                else:
-                    lstBox1.insert(END, LAST_TAG)
+                for i in ALL_TAGS:
+                    print(i)
+                    if LAST_TAG == i:
+                        print(LAST_TAG)
+                    else:
+                        lstBox1.insert(END, LAST_TAG)
             else:
                 lstBox1.insert(END, LAST_TAG)
             window.after(1000, app1)  # run again after 1000ms (1s)
