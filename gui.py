@@ -47,6 +47,7 @@ def app1():
             LAST_TAG = str(subprocess.run(["tail -n1 " + uhfdir + "uhf_sweep.csv | cut -d',' -f5"], shell=True, capture_output=True, text=True).stdout[:-1])
             #print(LAST_TAG)
             for i in lstBox1.get(0, END):
+                print(i)
                 if LAST_TAG == i:
                     print(LAST_TAG)
                 else:
