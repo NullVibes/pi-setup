@@ -44,11 +44,12 @@ def app1():
     if os.path.exists(uhfdir + "uhf-sweep.sh") == True:
         subprocess.run(["sudo " + uhfdir + "./uhf-sweep.sh"], shell=True, capture_output=True, text=True)
         if os.path.exists(uhfdir + "uhf_sweep.csv") == True:
-            result = subprocess.run(["tail -n1 " + uhfdir + "uhf_sweep.csv | cut -d',' -f5"], shell=True, capture_output=True, text=True)
-            lstBox1.insert(END, str(result.stdout))
+            LAST_TAG = subprocess.run(["tail -n1 " + uhfdir + "uhf_sweep.csv | cut -d',' -f5"], shell=True, capture_output=True, text=True)
+            lstBox1.insert(END, str(LAST_TAG.stdout))
             window.after(1000, app1)  # run again after 1000ms (1s)
         else:
             lstBox1.insert(END, str("Input File Not Found"))
+        
 
 def open_app(appNum):
     cMenu.pack_forget()
@@ -61,7 +62,7 @@ def open_app(appNum):
         cApp2.pack()
         cApp1.pack_forget()
         result = subprocess.run(["sudo systemctl status kismet"], shell=True, text=True, capture_output=True)
-        lstBox1.insert(END, str(result.stdout))
+        lstBox1.insert(END, str(result.stdout[:-1]))
     else:
         lstBox1.insert(END, str(appNum))
 
