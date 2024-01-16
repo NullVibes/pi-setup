@@ -46,12 +46,11 @@ def app1():
         if os.path.exists(uhfdir + "uhf_sweep.csv") == True:
             LAST_TAG = str(subprocess.run(["tail -n1 " + uhfdir + "uhf_sweep.csv | cut -d',' -f5"], shell=True, capture_output=True, text=True).stdout[:-1])
             #print(LAST_TAG)
-            for i in enumerate(lstBox1.get(0, END)):
-                print(i)
-                if i == LAST_TAG:
+            for i in lstBox1.get(0, END):
+                if LAST_TAG == i:
                     print(LAST_TAG)
                 else:
-                    lstBox1.insert(END, str(LAST_TAG.stdout[:-1]))
+                    lstBox1.insert(END, LAST_TAG)
             window.after(1000, app1)  # run again after 1000ms (1s)
         else:
             lstBox1.insert(END, str("Input File Not Found"))
