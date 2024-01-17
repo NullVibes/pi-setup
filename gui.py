@@ -2,7 +2,7 @@
 # Written by NullVibes
 
 import sqlite3
-import os, subprocess
+import os, subprocess, sys
 
 try:
     from tkinter import *
