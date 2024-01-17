@@ -29,7 +29,7 @@ def show(widget):
     widget.pack()
 
 def app_layout(self):
-    cApp1.pack_forget()
+    hide(cApp1)
     cApp2.pack_forget()
     self.button = []
     self.label = []
@@ -65,17 +65,15 @@ def app1():
             LAST_TAG = UHF_FILE.readline().split(",")
             ALL_TAGS = tree.get_children()
             #ALL_TAGS = lstBox1.get(0, END)
-            #print(ALL_TAGS)
-            print(LAST_TAG)
             TAG_CHECK = 0
             if len(ALL_TAGS) > 0:
                 for i in ALL_TAGS:
-                    print(i)
-                    if LAST_TAG[4] == i:
+                    print(ALL_TAGS.get_children(i))
+                    if LAST_TAG[4] == ALL_TAGS.get_children(i):
                         TAG_CHECK += 1
                 if TAG_CHECK == 0:
                     #lstBox1.insert(END, LAST_TAG)
-                    tree.insert('', 'end', values=('1', 'Joe', 'Nash'))
+                    tree.insert('', 'end', values=(LAST_TAG[4], 'Joe', 'Nash'))
             else:
                 #lstBox1.insert(END, LAST_TAG)
                 tree.insert('', 'end', values=('1', 'Joe', 'Nash'))
