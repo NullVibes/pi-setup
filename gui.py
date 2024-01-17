@@ -70,7 +70,7 @@ def app1():
             TAG_CHECK = 0
             if len(ALL_TAGS) > 0:
                 for i in ALL_TAGS:
-                    #print(i + "-->" + LAST_TAG)
+                    print(i)
                     if LAST_TAG[4] == i:
                         TAG_CHECK += 1
                 if TAG_CHECK == 0:
