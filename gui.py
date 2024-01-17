@@ -62,19 +62,22 @@ def app1():
         if os.path.exists(UHF_DIR + "uhf_sweep.csv") == True:
             #LAST_TAG = str(subprocess.run(["tail -n1 " + UHF_DIR + "uhf_sweep.csv | cut -d',' -f5"], shell=True, capture_output=True, text=True).stdout[:-1])
             UHF_FILE = open(UHF_DIR + "uhf_sweep.csv", "r")
-            LAST_TAG = UHF_FILE.readline()
-            ALL_TAGS = lstBox1.get(0, END)
+            LAST_TAG = UHF_FILE.readline().split(",")
+            ALL_TAGS = tree.get_children()
+            #ALL_TAGS = lstBox1.get(0, END)
+            print(ALL_TAGS)
             TAG_CHECK = 0
             if len(ALL_TAGS) > 0:
                 for i in ALL_TAGS:
                     #print(i + "-->" + LAST_TAG)
-                    if LAST_TAG == i:
+                    if LAST_TAG == i[4]:
                         TAG_CHECK += 1
-                        
                 if TAG_CHECK == 0:
-                    lstBox1.insert(END, LAST_TAG)
+                    #lstBox1.insert(END, LAST_TAG)
+                    tree.insert('', 'end', values=('1', 'Joe', 'Nash'))
             else:
-                lstBox1.insert(END, LAST_TAG)
+                #lstBox1.insert(END, LAST_TAG)
+                tree.insert('', 'end', values=('1', 'Joe', 'Nash'))
             window.after(1000, app1)  # run again after 1000ms (1s)
         else:
             lstBox1.insert(END, str("Input File Not Found"))
@@ -111,6 +114,7 @@ window.title('App Selector')
 window.geometry('790x420')
 window.resizable(False, False)
 
+
 # --- Canvas: App #2 (Kismet)(?) ---
 cApp2 = Canvas(window, height=400, width=800, bg="#22303C", bd='0', borderwidth=0, highlightthickness=0)
 cApp2.place(x=0, y=0)
@@ -121,12 +125,24 @@ cApp2.pack_forget()
 cApp1 = Canvas(window, height=420, width=800, bg="#22303C", bd='0', borderwidth=0, highlightthickness=0)
 cApp1.place(x=0, y=0)
 
-lstBox1 = Listbox(cApp1, height=3, width=50, bd='0')
+#lstBox1 = Listbox(cApp1, height=3, width=50, bd='0')
 #lstBox1.pack(side = LEFT, fill = BOTH)
-scrollbar1 = Scrollbar(cApp1)
+#scrollbar1 = Scrollbar(cApp1)
 #scrollbar1.pack(side = RIGHT, fill = BOTH)
-lstBox1.config(yscrollcommand = scrollbar1.set)
-scrollbar1.config(command = lstBox1.yview)
+#lstBox1.config(yscrollcommand = scrollbar1.set)
+#scrollbar1.config(command = lstBox1.yview)
+
+tree = ttk.Treeview(cApp1, column=("tag_id", "tag_count", "tag_fseen", "tag_lseen", "tag_rssi", "tag_gps"), show='headings', height=5)
+tree.column("# 1", anchor=CENTER)
+tree.heading("# 1", text="Tag ID")
+tree.column("# 2", anchor=CENTER)
+tree.heading("# 2", text="Count")
+tree.column("# 3", anchor=CENTER)
+tree.heading("# 3", text="F_Seen")
+tree.column("# 4", anchor=CENTER)
+tree.heading("# 4", text="L_Seen")
+tree.column("# 6", anchor=CENTER)
+tree.heading("# 6", text="GPS")
 
 cApp1.pack_forget()
 
@@ -139,7 +155,6 @@ app_layout(cMenu)
 
 #btnHelp = Button(cMenu, text='Help ?', width=96, height=1, bd='1', command=window.destroy)
 #btnHelp.config(bg="#22303C", highlightthickness=2, highlightbackground="orange", highlightcolor="orange")
-
 #btnHelp.place(x=10, y=365)
 
 window.mainloop()
