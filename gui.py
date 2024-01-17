@@ -45,16 +45,16 @@ def app1():
         subprocess.run(["sudo " + uhfdir + "./uhf-sweep.sh"], shell=True, capture_output=True, text=True)
         if os.path.exists(uhfdir + "uhf_sweep.csv") == True:
             LAST_TAG = str(subprocess.run(["tail -n1 " + uhfdir + "uhf_sweep.csv | cut -d',' -f5"], shell=True, capture_output=True, text=True).stdout[:-1])
-            #print(LAST_TAG)
             ALL_TAGS = lstBox1.get(0, END)
+            TAG_CHECK = 0
             if len(ALL_TAGS) > 0:
                 for i in ALL_TAGS:
-                    print(i + "-->" + LAST_TAG)
+                    #print(i + "-->" + LAST_TAG)
                     if LAST_TAG == i:
-                        #print(LAST_TAG)
-                        pass
-                    else:
-                        lstBox1.insert(END, LAST_TAG)
+                        TAG_CHECK += 1
+                        
+                if TAG_CHECK = 0:
+                    lstBox1.insert(END, LAST_TAG)
             else:
                 lstBox1.insert(END, LAST_TAG)
             window.after(1000, app1)  # run again after 1000ms (1s)
