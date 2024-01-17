@@ -118,7 +118,7 @@ cApp2.pack_forget()
 
 
 # --- Canvas: App #1 (UHF Sweep) ---
-cApp1 = Canvas(window, height=400, width=800, bg="#22303C", bd='0', borderwidth=0, highlightthickness=0)
+cApp1 = Canvas(window, height=420, width=800, bg="#22303C", bd='0', borderwidth=0, highlightthickness=0)
 cApp1.place(x=0, y=0)
 
 lstBox1 = Listbox(cApp1, height=3, width=50, bd='0')
@@ -131,7 +131,7 @@ scrollbar1.config(command = lstBox1.yview)
 cApp1.pack_forget()
 
 # --- Canvas: Main Menu ---
-cMenu = Canvas(window, height=400, width=800, bg="#22303C", bd='0', borderwidth=0, highlightthickness=0)
+cMenu = Canvas(window, height=420, width=800, bg="#22303C", bd='0', borderwidth=0, highlightthickness=0)
 cMenu.place(x=0, y=0)
 cMenu.pack()
 
