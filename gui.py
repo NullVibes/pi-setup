@@ -90,11 +90,13 @@ def open_app(appNum):
     
     if appNum == 0:
         cApp1.pack()
+        tree.pack()
         cApp2.pack_forget()
         window.after(500, app1)  # run again after 1000ms (1s)
     elif appNum == 1:
         cApp2.pack()
         cApp1.pack_forget()
+        tree.pack_forget()
         result = subprocess.run(["sudo systemctl status kismet"], shell=True, text=True, capture_output=True)
         #lstBox1.insert(END, str(result.stdout[:-1]))
     else:
@@ -146,7 +148,7 @@ tree.column("# 4", anchor=CENTER)
 tree.heading("# 4", text="L_Seen")
 tree.column("# 6", anchor=CENTER)
 tree.heading("# 6", text="GPS")
-tree.pack()
+tree.pack_forget()
 
 cApp1.pack_forget()
 
