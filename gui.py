@@ -65,12 +65,13 @@ def app1():
             LAST_TAG = UHF_FILE.readline().split(",")
             ALL_TAGS = tree.get_children()
             #ALL_TAGS = lstBox1.get(0, END)
-            print(ALL_TAGS)
+            #print(ALL_TAGS)
+            print(LAST_TAG)
             TAG_CHECK = 0
             if len(ALL_TAGS) > 0:
                 for i in ALL_TAGS:
                     #print(i + "-->" + LAST_TAG)
-                    if LAST_TAG == i[4]:
+                    if LAST_TAG[4] == i:
                         TAG_CHECK += 1
                 if TAG_CHECK == 0:
                     #lstBox1.insert(END, LAST_TAG)
