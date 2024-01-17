@@ -5,6 +5,8 @@ from tkinter import *
 from tkinter import ttk
 import os, subprocess
 
+UHF_DIR = "/opt/UHF-Sweep/"
+
 def hide(widget):
     widget.pack_forget()
 
@@ -40,8 +42,7 @@ def app_layout(self):
     self.button[i+1].grid(row=3, column=0, columnspan=(i+1), sticky=E+W, pady=2, padx=10, ipadx=2, ipady=2)
     
 def app1():
-    uhfdir = "/opt/UHF-Sweep/"
-    if os.path.exists(uhfdir + "uhf-sweep.sh") == True:
+    if os.path.exists(UHF_DIR + "uhf-sweep.sh") == True:
         subprocess.run(["sudo " + uhfdir + "./uhf-sweep.sh"], shell=True, capture_output=True, text=True)
         if os.path.exists(uhfdir + "uhf_sweep.csv") == True:
             LAST_TAG = str(subprocess.run(["tail -n1 " + uhfdir + "uhf_sweep.csv | cut -d',' -f5"], shell=True, capture_output=True, text=True).stdout[:-1])
