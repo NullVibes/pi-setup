@@ -53,7 +53,7 @@ def app1():
                     if LAST_TAG == i:
                         TAG_CHECK += 1
                         
-                if TAG_CHECK = 0:
+                if TAG_CHECK == 0:
                     lstBox1.insert(END, LAST_TAG)
             else:
                 lstBox1.insert(END, LAST_TAG)
