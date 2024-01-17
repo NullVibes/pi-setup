@@ -51,7 +51,8 @@ def app1():
                 for i in ALL_TAGS:
                     print(i + "-->" + LAST_TAG)
                     if LAST_TAG == i:
-                        print(LAST_TAG)
+                        #print(LAST_TAG)
+                        pass
                     else:
                         lstBox1.insert(END, LAST_TAG)
             else:
