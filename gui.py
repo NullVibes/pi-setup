@@ -145,6 +145,7 @@ tree.column("# 4", anchor=CENTER)
 tree.heading("# 4", text="L_Seen")
 tree.column("# 6", anchor=CENTER)
 tree.heading("# 6", text="GPS")
+tree.pack()
 
 cApp1.pack_forget()
 
