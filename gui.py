@@ -48,8 +48,8 @@ def app1():
             #print(LAST_TAG)
             ALL_TAGS = lstBox1.get(0, END)
             if len(ALL_TAGS) > 0:
-                print(len(ALL_TAGS))
                 for i in ALL_TAGS:
+                    print(i + "-->" + LAST_TAG)
                     if LAST_TAG == i:
                         print(LAST_TAG)
                     else:
