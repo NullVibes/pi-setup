@@ -18,14 +18,9 @@ except ModuleNotFoundError:
     print("pip install tk")
     sys.exit(1)
 
-try:
-    import TkTreectrl as treectrl
-except ModuleNotFoundError:
-    print("Please install TkTreectrl module first.")
-    print("pip install tk")
-    sys.exit(1)
 
 UHF_DIR = "/opt/UHF-Sweep/"
+
 
 def hide(widget):
     widget.pack_forget()
@@ -67,6 +62,7 @@ def app1():
         if os.path.exists(UHF_DIR + "uhf_sweep.csv") == True:
             #LAST_TAG = str(subprocess.run(["tail -n1 " + UHF_DIR + "uhf_sweep.csv | cut -d',' -f5"], shell=True, capture_output=True, text=True).stdout[:-1])
             UHF_FILE = open(UHF_DIR + "uhf_sweep.csv", "r")
+            LAST_TAG = UHF_FILE.readline()
             ALL_TAGS = lstBox1.get(0, END)
             TAG_CHECK = 0
             if len(ALL_TAGS) > 0:
@@ -90,7 +86,7 @@ def open_app(appNum):
     if appNum == 0:
         cApp1.pack()
         cApp2.pack_forget()
-        window.after(1000, app1)  # run again after 1000ms (1s)
+        window.after(500, app1)  # run again after 1000ms (1s)
     elif appNum == 1:
         cApp2.pack()
         cApp1.pack_forget()
