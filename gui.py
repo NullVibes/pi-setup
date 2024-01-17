@@ -1,9 +1,29 @@
 # GUI for RPI 4:3" Display
 # Written by NullVibes
 
-from tkinter import *
-from tkinter import ttk
+import sqlite3
 import os, subprocess
+
+try:
+    from tkinter import *
+except ModuleNotFoundError:
+    print("Please install tkinter module first.")
+    print("pip install tk")
+    sys.exit(1)
+
+try:
+    from tkinter import ttk
+except ModuleNotFoundError:
+    print("Please install tkinter module first.")
+    print("pip install tk")
+    sys.exit(1)
+
+try:
+    import TkTreectrl as treectrl
+except ModuleNotFoundError:
+    print("Please install TkTreectrl module first.")
+    print("pip install tk")
+    sys.exit(1)
 
 UHF_DIR = "/opt/UHF-Sweep/"
 
@@ -45,7 +65,8 @@ def app1():
     if os.path.exists(UHF_DIR + "uhf-sweep.sh") == True:
         subprocess.run(["sudo " + UHF_DIR + "./uhf-sweep.sh"], shell=True, capture_output=True, text=True)
         if os.path.exists(UHF_DIR + "uhf_sweep.csv") == True:
-            LAST_TAG = str(subprocess.run(["tail -n1 " + UHF_DIR + "uhf_sweep.csv | cut -d',' -f5"], shell=True, capture_output=True, text=True).stdout[:-1])
+            #LAST_TAG = str(subprocess.run(["tail -n1 " + UHF_DIR + "uhf_sweep.csv | cut -d',' -f5"], shell=True, capture_output=True, text=True).stdout[:-1])
+            UHF_FILE = open(UHF_DIR + "uhf_sweep.csv", "r")
             ALL_TAGS = lstBox1.get(0, END)
             TAG_CHECK = 0
             if len(ALL_TAGS) > 0:
