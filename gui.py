@@ -132,7 +132,7 @@ cApp1.pack_forget()
 
 # --- Canvas: Main Menu ---
 cMenu = Canvas(window, height=420, width=800, bg="#22303C", bd='0', borderwidth=0, highlightthickness=0)
-cMenu.place(x=0, y=0)
+cMenu.place(x=-1, y=-1)
 cMenu.pack()
 
 app_layout(cMenu)
