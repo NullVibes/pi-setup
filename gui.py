@@ -108,7 +108,7 @@ def btnC():
 
 window = Tk()
 window.title('App Selector')
-window.geometry('800x400')
+window.geometry('798x400')
 window.resizable(False, False)
 
 # --- Canvas: App #2 (Kismet)(?) ---
