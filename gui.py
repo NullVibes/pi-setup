@@ -80,7 +80,8 @@ def app1():
                 tree.insert('', 'end', values=('1', 'Joe', 'Nash'))
             window.after(1000, app1)  # run again after 1000ms (1s)
         else:
-            lstBox1.insert(END, str("Input File Not Found"))
+            tree.insert('', 'end', values=('1', 'Joe', 'Nash'))
+            #lstBox1.insert(END, str("Input File Not Found"))
         
 
 def open_app(appNum):
@@ -94,12 +95,13 @@ def open_app(appNum):
         cApp2.pack()
         cApp1.pack_forget()
         result = subprocess.run(["sudo systemctl status kismet"], shell=True, text=True, capture_output=True)
-        lstBox1.insert(END, str(result.stdout[:-1]))
+        #lstBox1.insert(END, str(result.stdout[:-1]))
     else:
-        lstBox1.insert(END, str(appNum))
+        #lstBox1.insert(END, str(appNum))
+        pass
 
-    lstBox1.pack(side = LEFT, fill = BOTH)
-    scrollbar1.pack(side = RIGHT, fill = BOTH)
+    #lstBox1.pack(side = LEFT, fill = BOTH)
+    #scrollbar1.pack(side = RIGHT, fill = BOTH)
 
 def btnB():
     #label.value = "Hunting for ALL XYZs"
