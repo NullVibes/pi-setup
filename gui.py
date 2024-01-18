@@ -72,6 +72,7 @@ def app1():
                     #print(tree.item(i)['values'][0])
                     if LAST_TAG[4] == tree.item(i)['values'][0]:
                         TAG_CHECK += 1
+                        print(tree.item(i)['values'][1])
                         tree.set(i, '# 2', (tree.item(i)['values'][1] + 1))
                         
                 if TAG_CHECK == 0:
