@@ -66,6 +66,7 @@ def app1():
             ALL_TAGS = tree.get_children()
             TAG_CHECK = 0
             if len(ALL_TAGS) > 0:
+                print(len(ALL_TAGS))
                 for i in ALL_TAGS:
                     TAG_COUNT = tree.item(i)['values'][1]
                     print(tree.item(i)['values'][0])
