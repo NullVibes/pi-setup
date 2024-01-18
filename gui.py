@@ -82,10 +82,10 @@ def app1():
                             tree.set(i, '# 2', (tree.item(i)['values'][1] + 1))
                             tree.set(i, '# 4', TAG_TIME[0])
                             tree.set(i, '# 5', TAG_RSSI)
-
-                if TAG_CHECK == 0:
-                    tree.insert('', 'end', values=(LAST_TAG[4], 1, TAG_TIME[0], TAG_TIME[0], TAG_RSSI, 'GPS'))
-                
+                else:
+                    if TAG_CHECK == 0:
+                        tree.insert('', 'end', values=(LAST_TAG[4], 1, TAG_TIME[0], TAG_TIME[0], TAG_RSSI, 'GPS'))
+                    
             window.after(500, app1)  # run again after 1000ms (1s)
         else:
             tree.insert('', 'end', values=('INPUT', 'FILE', 'NOT', 'FOUND', '', ''))
