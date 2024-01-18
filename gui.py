@@ -67,6 +67,7 @@ def app1():
             #UHF_FILE = open(UHF_DIR + "uhf_sweep.csv", "r")
             #LAST_TAG = UHF_FILE.readline().split(",")
             LAST_TAG =  LAST_LINE.split(",")
+            TAG_TIME = LAST_TAG.split(".")
             ALL_TAGS = tree.get_children()
             TAG_CHECK = 0
             if len(ALL_TAGS) > 0:
@@ -77,14 +78,14 @@ def app1():
                         #print(tree.item(i)['values'][1])
                         #print(tree.item(i)['values'])
                         tree.set(i, '# 2', (tree.item(i)['values'][1] + 1))
-                        tree.set(i, '# 4', LAST_TAG[0])
+                        tree.set(i, '# 4', TAG_TIME[0])
                         
                 #if TAG_CHECK == 0:
                     #tree.insert('', 'end', values=(LAST_TAG[4], 1, 'FSeen', 'LSeen', 'RSSI', 'GPS'))
                     #treeview.set(item, "lastmod", "19:30")
             else:
                 #tree.set('', 'end', values=(LAST_TAG[4], (tree.item(i)['values'][1] + 1), 'FSeen', 'LSeen', 'RSSI', 'GPS'))
-                tree.insert('', 'end', values=(LAST_TAG[4], 1, LAST_TAG[0], LAST_TAG[0], 'RSSI', 'GPS'))
+                tree.insert('', 'end', values=(LAST_TAG[4], 1, TAG_TIME[0], TAG_TIME[0], 'RSSI', 'GPS'))
                 
             window.after(1000, app1)  # run again after 1000ms (1s)
         else:
@@ -144,9 +145,9 @@ cApp1.place(x=0, y=0)
 #scrollbar1.config(command = lstBox1.yview)
 
 tree = ttk.Treeview(cApp1, column=("tag_id", "tag_count", "tag_fseen", "tag_lseen", "tag_rssi", "tag_gps"), show='headings', height=5)
-tree.column("# 1", anchor=CENTER, width=225)
+tree.column("# 1", anchor=CENTER, width=215)
 tree.heading("# 1", text="Tag ID")
-tree.column("# 2", anchor=CENTER, width=50)
+tree.column("# 2", anchor=CENTER, width=60)
 tree.heading("# 2", text="Count")
 tree.column("# 3", anchor=CENTER)
 tree.heading("# 3", text="F_Seen")
