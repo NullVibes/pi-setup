@@ -59,6 +59,7 @@ def app_layout(self):
 def app1():
     if os.path.exists(UHF_DIR + "uhf-sweep.sh") == True:
         subprocess.run(["sudo " + UHF_DIR + "./uhf-sweep.sh"], shell=True, capture_output=True, text=True)
+        
         if os.path.exists(UHF_DIR + "uhf_sweep.csv") == True:
             #LAST_TAG = str(subprocess.run(["tail -n1 " + UHF_DIR + "uhf_sweep.csv | cut -d',' -f5"], shell=True, capture_output=True, text=True).stdout[:-1])
             with open(UHF_DIR + 'uhf_sweep.csv', 'r') as UHF_FILE:
@@ -82,9 +83,10 @@ def app1():
                             tree.set(i, '# 2', (tree.item(i)['values'][1] + 1))
                             tree.set(i, '# 4', TAG_TIME[0])
                             tree.set(i, '# 5', TAG_RSSI)
-                else:
-                    if TAG_CHECK == 0:
-                        tree.insert('', 'end', values=(LAST_TAG[4], 1, TAG_TIME[0], TAG_TIME[0], TAG_RSSI, 'GPS'))
+
+                if TAG_CHECK == 0:
+                    tree.insert('', 'end', values=(LAST_TAG[4], 1, TAG_TIME[0], TAG_TIME[0], TAG_RSSI, 'GPS'))
+            
             os.remove(UHF_DIR + "uhf_sweep.csv")        
             window.after(500, app1)  # run again after 1000ms (1s)
         else:
