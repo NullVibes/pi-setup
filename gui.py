@@ -64,27 +64,24 @@ def app1():
             UHF_FILE = open(UHF_DIR + "uhf_sweep.csv", "r")
             LAST_TAG = UHF_FILE.readline().split(",")
             ALL_TAGS = tree.get_children()
-            #ALL_TAGS = lstBox1.get(0, END)
             TAG_CHECK = 0
             if len(ALL_TAGS) > 0:
                 for i in ALL_TAGS:
                     TAG_COUNT = tree.item(i)['values'][1]
-                    #print(tree.item(i)['values'][0])
+                    print(tree.item(i)['values'][0])
                     if LAST_TAG[4] == tree.item(i)['values'][0]:
                         TAG_CHECK += 1
                         print(tree.item(i)['values'][1])
                         tree.set(i, '# 2', (tree.item(i)['values'][1] + 1))
-                        
                 if TAG_CHECK == 0:
-                    #treeview.set(item, "lastmod", "19:30")
                     tree.insert('', 'end', values=(LAST_TAG[4], 1, 'FSeen', 'LSeen', 'RSSI', 'GPS'))
-                else:
-                    tree.set('', 'end', values=(LAST_TAG[4], (tree.item(i)['values'][1] + 1), 'FSeen', 'LSeen', 'RSSI', 'GPS'))
+                    #treeview.set(item, "lastmod", "19:30")
+                #else:
+                    #tree.set('', 'end', values=(LAST_TAG[4], (tree.item(i)['values'][1] + 1), 'FSeen', 'LSeen', 'RSSI', 'GPS'))
                     #tree.insert('', 'end', values=(LAST_TAG[4], 1, 'FSeen', 'LSeen', 'RSSI', 'GPS'))
-                    
                 window.after(1000, app1)  # run again after 1000ms (1s)
-        else:
-            lstBox1.insert(END, str("Input File Not Found"))
+        #else:
+            #lstBox1.insert(END, str("Input File Not Found"))
         
 
 def open_app(appNum):
