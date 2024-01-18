@@ -75,7 +75,7 @@ def app1():
                     if LAST_TAG[4] == tree.item(i)['values'][0]:
                         TAG_CHECK += 1
                         #print(tree.item(i)['values'][1])
-                        print(tree.item(i)['values'])
+                        #print(tree.item(i)['values'])
                         tree.set(i, '# 2', (tree.item(i)['values'][1] + 1))
                         tree.set(i, '# 4', LAST_TAG[0])
                         
@@ -144,7 +144,7 @@ cApp1.place(x=0, y=0)
 #scrollbar1.config(command = lstBox1.yview)
 
 tree = ttk.Treeview(cApp1, column=("tag_id", "tag_count", "tag_fseen", "tag_lseen", "tag_rssi", "tag_gps"), show='headings', height=5)
-tree.column("# 1", anchor=CENTER, width=250)
+tree.column("# 1", anchor=CENTER, width=225)
 tree.heading("# 1", text="Tag ID")
 tree.column("# 2", anchor=CENTER, width=50)
 tree.heading("# 2", text="Count")
