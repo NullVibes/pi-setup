@@ -83,8 +83,9 @@ def app1():
                 tree.insert('', 'end', values=(LAST_TAG[4], 1, 'FSeen', 'LSeen', 'RSSI', 'GPS'))
                 
             window.after(1000, app1)  # run again after 1000ms (1s)
-        #else:
+        else:
             #lstBox1.insert(END, str("Input File Not Found"))
+            tree.insert('', 'end', values=('INPUT', 'FILE', 'NOT', 'FOUND', '', ''))
         
 
 def open_app(appNum):
