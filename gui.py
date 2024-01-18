@@ -73,7 +73,9 @@ def app1():
                         TAG_CHECK += 1
                 if TAG_CHECK == 0:
                     #lstBox1.insert(END, LAST_TAG)
-                    tree.insert('', 'end', values=(LAST_TAG[4], (tree.item(i)['values'][1] + 1), 'FSeen', 'LSeen', 'RSSI', 'GPS'))
+                    #treeview.set(item, "lastmod", "19:30")
+                    tree.set(i, '# 2', (tree.item(i)['values'][1] + 1))
+                    #tree.insert('', 'end', values=(LAST_TAG[4], (tree.item(i)['values'][1] + 1), 'FSeen', 'LSeen', 'RSSI', 'GPS'))
             else:
                 #lstBox1.insert(END, LAST_TAG)
                 tree.insert('', 'end', values=(LAST_TAG[4], 1, 'FSeen', 'LSeen', 'RSSI', 'GPS'))
