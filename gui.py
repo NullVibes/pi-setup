@@ -77,17 +77,14 @@ def app1():
                 for i in ALL_TAGS:
                     TAG_COUNT = tree.item(i)['values'][1]
                     if LAST_TAG[4] == tree.item(i)['values'][0]:
+                        TAG_CHECK += 1
                         if TAG_TIME[0] != tree.item(i)['values'][3]:
                             tree.set(i, '# 2', (tree.item(i)['values'][1] + 1))
                             tree.set(i, '# 4', TAG_TIME[0])
                             tree.set(i, '# 5', TAG_RSSI)
-                else:
+
+                if TAG_CHECK == 0:
                     tree.insert('', 'end', values=(LAST_TAG[4], 1, TAG_TIME[0], TAG_TIME[0], TAG_RSSI, 'GPS'))
-                #if TAG_CHECK == 0:
-                    #tree.insert('', 'end', values=(LAST_TAG[4], 1, 'FSeen', 'LSeen', 'RSSI', 'GPS'))
-                    #treeview.set(item, "lastmod", "19:30")
-            else:
-                tree.insert('', 'end', values=(LAST_TAG[4], 1, TAG_TIME[0], TAG_TIME[0], TAG_RSSI, 'GPS'))
                 
             window.after(500, app1)  # run again after 1000ms (1s)
         else:
