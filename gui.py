@@ -70,13 +70,14 @@ def app1():
             ALL_TAGS = tree.get_children()
             TAG_CHECK = 0
             if len(ALL_TAGS) > 0:
-                print(len(ALL_TAGS))
+                #print(len(ALL_TAGS))
                 for i in ALL_TAGS:
                     TAG_COUNT = tree.item(i)['values'][1]
-                    print(tree.item(i)['values'][0])
+                    #print(tree.item(i)['values'][0])
                     if LAST_TAG[4] == tree.item(i)['values'][0]:
                         TAG_CHECK += 1
-                        print(tree.item(i)['values'][1])
+                        #print(tree.item(i)['values'][1])
+                        print(tree.item(i)['values'])
                         tree.set(i, '# 2', (tree.item(i)['values'][1] + 1))
                         
                 if TAG_CHECK == 0:
