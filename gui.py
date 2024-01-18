@@ -70,7 +70,7 @@ def app1():
                 for i in ALL_TAGS:
                     print(i)
                     print(tree.item(i)['values'][0])
-                    if LAST_TAG[4] == ALL_TAGS.get_children(i):
+                    if LAST_TAG[4] == tree.item(i)['values'][0]:
                         TAG_CHECK += 1
                 if TAG_CHECK == 0:
                     #lstBox1.insert(END, LAST_TAG)
