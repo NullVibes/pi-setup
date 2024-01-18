@@ -68,7 +68,8 @@ def app1():
             #LAST_TAG = UHF_FILE.readline().split(",")
             LAST_TAG =  LAST_LINE.split(",")
             TAG_TIME = LAST_TAG[0].split(".")
-            TAG_RSSI = LAST_TAG[2]
+            #TAG_RSSI = LAST_TAG[2]
+            TAG_RSSI = ":".join("{:02x}".format(c) for c in LAST_TAG[2].encode())
             ALL_TAGS = tree.get_children()
             TAG_CHECK = 0
             if len(ALL_TAGS) > 0:
