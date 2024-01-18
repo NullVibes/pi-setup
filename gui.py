@@ -64,6 +64,7 @@ def app1():
             with open(UHF_DIR + 'uhf_sweep.csv', 'r') as UHF_FILE:
                 F_LINES = UHF_FILE.read().splitlines()
                 LAST_LINE = F_LINES[-1]
+            UHF_FILE.close()
             #UHF_FILE = open(UHF_DIR + "uhf_sweep.csv", "r")
             #LAST_TAG = UHF_FILE.readline().split(",")
             LAST_TAG =  LAST_LINE.split(",")
@@ -72,7 +73,7 @@ def app1():
             TAG_RSSI = int(LAST_TAG[2]).to_bytes(2, 'big')
             ALL_TAGS = tree.get_children()
             TAG_CHECK = 0
-            UHF_FILE.close()
+
             if len(ALL_TAGS) > 0:
                 for i in ALL_TAGS:
                     TAG_COUNT = tree.item(i)['values'][1]
