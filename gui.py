@@ -89,7 +89,8 @@ def app1():
             window.after(500, app1)  # run again after 1000ms (1s)
         else:
             tree.insert('', 'end', values=('INPUT', 'FILE', 'NOT', 'FOUND', '', ''))
-            
+    else:
+        tree.insert('', 'end', values=('SCRIPT', 'NOT', 'FOUND', '', '', ''))
 
 def open_app(appNum):
     cMenu.pack_forget()
