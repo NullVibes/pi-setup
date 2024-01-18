@@ -80,7 +80,7 @@ def app1():
                         #print(tree.item(i)['values'])
                         tree.set(i, '# 2', (tree.item(i)['values'][1] + 1))
                         tree.set(i, '# 4', TAG_TIME[0])
-                        tree.set(i, '# 5', 
+                        tree.set(i, '# 5', TAG_RSSI)
                         
                 #if TAG_CHECK == 0:
                     #tree.insert('', 'end', values=(LAST_TAG[4], 1, 'FSeen', 'LSeen', 'RSSI', 'GPS'))
