@@ -68,6 +68,7 @@ def app1():
             TAG_CHECK = 0
             if len(ALL_TAGS) > 0:
                 for i in ALL_TAGS:
+                    print(i)
                     print(ALL_TAGS.get_children(i))
                     if LAST_TAG[4] == ALL_TAGS.get_children(i):
                         TAG_CHECK += 1
