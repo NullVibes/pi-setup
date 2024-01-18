@@ -85,7 +85,7 @@ def app1():
             else:
                 tree.insert('', 'end', values=(LAST_TAG[4], 1, TAG_TIME[0], TAG_TIME[0], TAG_RSSI, 'GPS'))
             
-            os.remove(UHF_DIR + "uhf_sweep.csv")        
+            #os.remove(UHF_DIR + "uhf_sweep.csv")        
             window.after(500, app1)  # run again after 1000ms (1s)
         else:
             tree.insert('', 'end', values=('INPUT', 'FILE', 'NOT', 'FOUND', '', ''))
@@ -93,7 +93,6 @@ def app1():
 
 def open_app(appNum):
     cMenu.pack_forget()
-    
     if appNum == 0:
         cApp1.pack()
         tree.pack()
@@ -105,7 +104,6 @@ def open_app(appNum):
         cApp1.pack_forget()
         tree.pack_forget()
         result = subprocess.run(["sudo systemctl status kismet"], shell=True, text=True, capture_output=True)
-
     else:
         pass
         
