@@ -69,7 +69,7 @@ def app1():
             if len(ALL_TAGS) > 0:
                 for i in ALL_TAGS:
                     print(i)
-                    print(ALL_TAGS.item(i))
+                    print(tree.item(i))
                     if LAST_TAG[4] == ALL_TAGS.get_children(i):
                         TAG_CHECK += 1
                 if TAG_CHECK == 0:
