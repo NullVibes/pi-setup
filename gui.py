@@ -86,7 +86,7 @@ def app1():
                 else:
                     if TAG_CHECK == 0:
                         tree.insert('', 'end', values=(LAST_TAG[4], 1, TAG_TIME[0], TAG_TIME[0], TAG_RSSI, 'GPS'))
-                    
+            os.remove(UHF_DIR + "uhf_sweep.csv")        
             window.after(500, app1)  # run again after 1000ms (1s)
         else:
             tree.insert('', 'end', values=('INPUT', 'FILE', 'NOT', 'FOUND', '', ''))
