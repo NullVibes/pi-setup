@@ -69,15 +69,15 @@ def app1():
             if len(ALL_TAGS) > 0:
                 for i in ALL_TAGS:
                     print(i)
-                    print(tree.item(i))
+                    print(tree.item(i)['values'][0])
                     if LAST_TAG[4] == ALL_TAGS.get_children(i):
                         TAG_CHECK += 1
                 if TAG_CHECK == 0:
                     #lstBox1.insert(END, LAST_TAG)
-                    tree.insert('', 'end', values=(LAST_TAG[4], 'Joe', 'Nash'))
+                    tree.insert('', 'end', values=(LAST_TAG[4], 'Tag Count', 'FSeen', 'LSeen', 'RSSI', 'GPS'))
             else:
                 #lstBox1.insert(END, LAST_TAG)
-                tree.insert('', 'end', values=('1', 'Joe', 'Nash'))
+                tree.insert('', 'end', values=(LAST_TAG[4], 'Tag Count', 'FSeen', 'LSeen', 'RSSI', 'GPS'))
             window.after(1000, app1)  # run again after 1000ms (1s)
         else:
             tree.insert('', 'end', values=('1', 'Joe', 'Nash'))
@@ -145,6 +145,8 @@ tree.column("# 3", anchor=CENTER)
 tree.heading("# 3", text="F_Seen")
 tree.column("# 4", anchor=CENTER)
 tree.heading("# 4", text="L_Seen")
+tree.column("# 5", anchor=CENTER)
+tree.heading("# 5", text="RSSI")
 tree.column("# 6", anchor=CENTER)
 tree.heading("# 6", text="GPS")
 tree.pack_forget()
