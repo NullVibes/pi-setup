@@ -72,6 +72,7 @@ def app1():
             TAG_RSSI = int(LAST_TAG[2]).to_bytes(2, 'big')
             ALL_TAGS = tree.get_children()
             TAG_CHECK = 0
+            UHF_FILE.close()
             if len(ALL_TAGS) > 0:
                 for i in ALL_TAGS:
                     TAG_COUNT = tree.item(i)['values'][1]
@@ -80,15 +81,14 @@ def app1():
                             tree.set(i, '# 2', (tree.item(i)['values'][1] + 1))
                             tree.set(i, '# 4', TAG_TIME[0])
                             tree.set(i, '# 5', TAG_RSSI)
-                    else:
-                        tree.insert('', 'end', values=(LAST_TAG[4], 1, TAG_TIME[0], TAG_TIME[0], TAG_RSSI, 'GPS'))
+                else:
+                    tree.insert('', 'end', values=(LAST_TAG[4], 1, TAG_TIME[0], TAG_TIME[0], TAG_RSSI, 'GPS'))
                 #if TAG_CHECK == 0:
                     #tree.insert('', 'end', values=(LAST_TAG[4], 1, 'FSeen', 'LSeen', 'RSSI', 'GPS'))
                     #treeview.set(item, "lastmod", "19:30")
             else:
                 tree.insert('', 'end', values=(LAST_TAG[4], 1, TAG_TIME[0], TAG_TIME[0], TAG_RSSI, 'GPS'))
                 
-            UHF_FILE.close() 
             window.after(500, app1)  # run again after 1000ms (1s)
         else:
             tree.insert('', 'end', values=('INPUT', 'FILE', 'NOT', 'FOUND', '', ''))
