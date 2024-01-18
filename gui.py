@@ -68,6 +68,7 @@ def app1():
             #LAST_TAG = UHF_FILE.readline().split(",")
             LAST_TAG =  LAST_LINE.split(",")
             TAG_TIME = LAST_TAG[0].split(".")
+            TAG_RSSI = b'{LAST_TAG[3]}
             ALL_TAGS = tree.get_children()
             TAG_CHECK = 0
             if len(ALL_TAGS) > 0:
@@ -79,6 +80,7 @@ def app1():
                         #print(tree.item(i)['values'])
                         tree.set(i, '# 2', (tree.item(i)['values'][1] + 1))
                         tree.set(i, '# 4', TAG_TIME[0])
+                        tree.set(i, '# 5', 
                         
                 #if TAG_CHECK == 0:
                     #tree.insert('', 'end', values=(LAST_TAG[4], 1, 'FSeen', 'LSeen', 'RSSI', 'GPS'))
@@ -86,8 +88,8 @@ def app1():
             else:
                 #tree.set('', 'end', values=(LAST_TAG[4], (tree.item(i)['values'][1] + 1), 'FSeen', 'LSeen', 'RSSI', 'GPS'))
                 tree.insert('', 'end', values=(LAST_TAG[4], 1, TAG_TIME[0], TAG_TIME[0], 'RSSI', 'GPS'))
-                
-            #window.after(500, app1)  # run again after 1000ms (1s)
+
+            window.after(500, app1)  # run again after 1000ms (1s)
         else:
             tree.insert('', 'end', values=('INPUT', 'FILE', 'NOT', 'FOUND', '', ''))
         
@@ -106,12 +108,10 @@ def open_app(appNum):
         cApp1.pack_forget()
         tree.pack_forget()
         result = subprocess.run(["sudo systemctl status kismet"], shell=True, text=True, capture_output=True)
-        #lstBox1.insert(END, str(result.stdout[:-1]))
-    else:
-        #lstBox1.insert(END, str(appNum))
-        pass
 
-    #lstBox1.pack(side = LEFT, fill = BOTH)
+    else:
+        pass
+        
     #scrollbar1.pack(side = RIGHT, fill = BOTH)
 
 def btnB():
@@ -154,7 +154,7 @@ tree.column("# 3", anchor=CENTER, width=175)
 tree.heading("# 3", text="F_Seen")
 tree.column("# 4", anchor=CENTER, width=175)
 tree.heading("# 4", text="L_Seen")
-tree.column("# 5", anchor=CENTER, width=100)
+tree.column("# 5", anchor=CENTER, width=80)
 tree.heading("# 5", text="RSSI")
 tree.column("# 6", anchor=CENTER)
 tree.heading("# 6", text="GPS")
