@@ -79,12 +79,12 @@ def app1():
                         tree.set(i, '# 2', (tree.item(i)['values'][1] + 1))
                         tree.set(i, '# 4', LAST_TAG[0])
                         
-                if TAG_CHECK == 0:
-                    tree.insert('', 'end', values=(LAST_TAG[4], 1, 'FSeen', 'LSeen', 'RSSI', 'GPS'))
+                #if TAG_CHECK == 0:
+                    #tree.insert('', 'end', values=(LAST_TAG[4], 1, 'FSeen', 'LSeen', 'RSSI', 'GPS'))
                     #treeview.set(item, "lastmod", "19:30")
             else:
                 #tree.set('', 'end', values=(LAST_TAG[4], (tree.item(i)['values'][1] + 1), 'FSeen', 'LSeen', 'RSSI', 'GPS'))
-                tree.insert('', 'end', values=(LAST_TAG[4], 1, 'FSeen', 'LSeen', 'RSSI', 'GPS'))
+                tree.insert('', 'end', values=(LAST_TAG[4], 1, (tree.item(i)['values'][1] + 1), (tree.item(i)['values'][1] + 1), 'RSSI', 'GPS'))
                 
             window.after(1000, app1)  # run again after 1000ms (1s)
         else:
