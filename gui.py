@@ -87,7 +87,7 @@ def app1():
                 #tree.set('', 'end', values=(LAST_TAG[4], (tree.item(i)['values'][1] + 1), 'FSeen', 'LSeen', 'RSSI', 'GPS'))
                 tree.insert('', 'end', values=(LAST_TAG[4], 1, TAG_TIME[0], TAG_TIME[0], 'RSSI', 'GPS'))
                 
-            window.after(500, app1)  # run again after 1000ms (1s)
+            #window.after(500, app1)  # run again after 1000ms (1s)
         else:
             tree.insert('', 'end', values=('INPUT', 'FILE', 'NOT', 'FOUND', '', ''))
         
@@ -99,7 +99,7 @@ def open_app(appNum):
         cApp1.pack()
         tree.pack()
         cApp2.pack_forget()
-        #window.after(500, app1)  # run again after 1000ms (1s)
+        window.after(500, app1)  # run again after 1000ms (1s)
     elif appNum == 1:
         cApp2.pack()
         cApp1.pack_forget()
