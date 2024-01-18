@@ -99,7 +99,8 @@ def open_app(appNum):
         cApp1.pack()
         tree.pack()
         cApp2.pack_forget()
-        window.after(500, app1)  # run again after 1000ms (1s)
+        app1()
+        #window.after(500, app1)  # run again after 1000ms (1s)
     elif appNum == 1:
         cApp2.pack()
         cApp1.pack_forget()
