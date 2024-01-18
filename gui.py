@@ -66,7 +66,7 @@ def app1():
                 LAST_LINE = F_LINES[-1]
             #UHF_FILE = open(UHF_DIR + "uhf_sweep.csv", "r")
             #LAST_TAG = UHF_FILE.readline().split(",")
-            LAST_TAG =  LAST_LINE.readline().split(",")
+            LAST_TAG =  LAST_LINE.split(",")
             ALL_TAGS = tree.get_children()
             TAG_CHECK = 0
             if len(ALL_TAGS) > 0:
