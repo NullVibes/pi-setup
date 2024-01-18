@@ -74,7 +74,7 @@ def app1():
             if len(ALL_TAGS) > 0:
                 for i in ALL_TAGS:
                     TAG_COUNT = tree.item(i)['values'][1]
-                    if LAST_TAG[4] == tree.item(i)['values'][0]:
+                    if LAST_TAG[4] == tree.item(i)['values'][0] and TAG_TIME[0] != tree.item(i)['values'][3]:
                         TAG_CHECK += 1
                         #print(tree.item(i)['values'][1])
                         #print(tree.item(i)['values'])
@@ -87,7 +87,7 @@ def app1():
                     #treeview.set(item, "lastmod", "19:30")
             else:
                 #tree.set('', 'end', values=(LAST_TAG[4], (tree.item(i)['values'][1] + 1), 'FSeen', 'LSeen', 'RSSI', 'GPS'))
-                tree.insert('', 'end', values=(LAST_TAG[4], 1, TAG_TIME[0], TAG_TIME[0], 'RSSI', 'GPS'))
+                tree.insert('', 'end', values=(LAST_TAG[4], 1, TAG_TIME[0], TAG_TIME[0], TAG_RSSI, 'GPS'))
 
             window.after(500, app1)  # run again after 1000ms (1s)
         else:
