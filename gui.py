@@ -69,7 +69,7 @@ def app1():
             LAST_TAG =  LAST_LINE.split(",")
             TAG_TIME = LAST_TAG[0].split(".")
             #TAG_RSSI = LAST_TAG[2]
-            TAG_RSSI = ":".join("{:02x}".format(c) for c in LAST_TAG[2].encode())
+            TAG_RSSI = LAST_TAG[2].to_bytes(2, 'big')
             ALL_TAGS = tree.get_children()
             TAG_CHECK = 0
             if len(ALL_TAGS) > 0:
