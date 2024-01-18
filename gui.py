@@ -144,7 +144,7 @@ cApp1.place(x=0, y=0)
 #scrollbar1.config(command = lstBox1.yview)
 
 tree = ttk.Treeview(cApp1, column=("tag_id", "tag_count", "tag_fseen", "tag_lseen", "tag_rssi", "tag_gps"), show='headings', height=5)
-tree.column("# 1", anchor=CENTER, width=10, stretch=YES)
+tree.column("# 1", anchor=CENTER, width=150)
 tree.heading("# 1", text="Tag ID")
 tree.column("# 2", anchor=CENTER)
 tree.heading("# 2", text="Count")
