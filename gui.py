@@ -56,7 +56,7 @@ def app_layout(self):
     
 def app1():
     if os.path.exists(UHF_DIR + "uhf-sweep.sh") == True:
-        subprocess.run(["sudo " + UHF_DIR + "./uhf-sweep.sh"], shell=True, capture_output=True, text=True)
+        UHF_SCRIPT = subprocess.run(["sudo " + UHF_DIR + "./uhf-sweep.sh"], shell=True, capture_output=True, text=True)
         if os.path.exists(UHF_DIR + "uhf_sweep.csv") == True:
             #LAST_TAG = str(subprocess.run(["tail -n1 " + UHF_DIR + "uhf_sweep.csv | cut -d',' -f5"], shell=True, capture_output=True, text=True).stdout[:-1])
             UHF_FILE = open(UHF_DIR + 'uhf_sweep.csv', 'r')
