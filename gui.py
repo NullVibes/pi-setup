@@ -92,6 +92,8 @@ def app1():
                 UHF_FILE.write('0,0,0,0,0')
                 UHF_FILE.close()
                 window.after(500, app1)  # run again after 1000ms (1s)
+            else:
+                pass
         else:
             #UHF_SCRIPT = subprocess.run(["sudo " + UHF_DIR + "./uhf-sweep.sh"], shell=True, capture_output=True, text=True)
             tree.insert('', 'end', values=('INPUT', 'FILE', 'NOT', 'FOUND', '', ''))
