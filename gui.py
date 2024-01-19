@@ -62,17 +62,14 @@ def app1():
         UHF_SCRIPT = subprocess.run(["sudo " + UHF_DIR + "./uhf-sweep.sh"], shell=True, capture_output=True, text=True)
         print(UHF_SCRIPT.stdout)
         if os.path.exists(UHF_DIR + "uhf_sweep.csv") == True:
-            #LAST_TAG = str(subprocess.run(["tail -n1 " + UHF_DIR + "uhf_sweep.csv | cut -d',' -f5"], shell=True, capture_output=True, text=True).stdout[:-1])
             UHF_FILE = open(UHF_DIR + 'uhf_sweep.csv', 'r')
             F_LINES = UHF_FILE.read().splitlines()
             LAST_LINE = F_LINES[-1]
             UHF_FILE.close()
-            #UHF_FILE = open(UHF_DIR + "uhf_sweep.csv", "r")
-            #LAST_TAG = UHF_FILE.readline().split(",")
             LAST_TAG =  LAST_LINE.split(",")
             TAG_TIME = LAST_TAG[0].split(".")
-            #TAG_RSSI = LAST_TAG[2]
-            TAG_RSSI = int(LAST_TAG[2]).to_bytes(2, 'big')
+            TAG_RSSI = LAST_TAG[2]
+            #TAG_RSSI = int(LAST_TAG[2]).to_bytes(2, 'big')
             ALL_TAGS = tree.get_children()
             TAG_CHECK = 0
             if len(ALL_TAGS) > 0:
@@ -91,7 +88,7 @@ def app1():
             
             #os.remove(UHF_DIR + "uhf_sweep.csv")
             UHF_FILE = open(UHF_DIR + 'uhf_sweep.csv', 'w')
-            UHF_FILE.write("")
+            UHF_FILE.write('0,0,0,0')
             UHF_FILE.close()
             window.after(500, app1)  # run again after 1000ms (1s)
         else:
