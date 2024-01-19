@@ -152,7 +152,7 @@ tree = ttk.Treeview(cApp1, column=("tag_id", "tag_count", "tag_fseen", "tag_lsee
 tree.tag_configure('TREE_LINE', background='#22303C', font=(None, 14))
 style = ttk.Style()
 #style.configure('Treeview.Heading', font=(None, 14))
-style.configure('Treeview', background='#22303C', font=(None, 14))
+style.configure('Treeview', background='#22303C', fieldbackground='#22303C', foreground='white', font=(None, 14))
 tree.column("# 1", anchor=CENTER, width=215)
 tree.heading("# 1", text="Tag ID")
 tree.column("# 2", anchor=CENTER, width=60)
