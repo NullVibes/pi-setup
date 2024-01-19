@@ -89,7 +89,7 @@ def app1():
             
                 #os.remove(UHF_DIR + "uhf_sweep.csv")
                 UHF_FILE = open(UHF_DIR + 'uhf_sweep.csv', 'w')
-                UHF_FILE.write('0,0,0,0,0\n')
+                UHF_FILE.write("0,0,0,0,0\n")
                 UHF_FILE.close()
                 window.after(500, app1)  # run again after 1000ms (1s)
             else:
