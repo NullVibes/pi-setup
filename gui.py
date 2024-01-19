@@ -66,7 +66,7 @@ def app1():
             #print(f'{F_LINES}')
             LAST_LINE = F_LINES[-1]
             UHF_FILE.close()
-            if LAST_LINE != '0,0,0,0,0':
+            if LAST_LINE != '' and LAST_LINE != '0,0,0,0,0':
                 LAST_TAG =  LAST_LINE.split(",")
                 TAG_TIME = LAST_TAG[0].split(".")
                 TAG_RSSI = LAST_TAG[2]
@@ -89,7 +89,7 @@ def app1():
             
                 #os.remove(UHF_DIR + "uhf_sweep.csv")
                 UHF_FILE = open(UHF_DIR + 'uhf_sweep.csv', 'w')
-                UHF_FILE.write("0,0,0,0,0\n")
+                UHF_FILE.write('0,0,0,0,0' + '\n')
                 UHF_FILE.close()
                 window.after(500, app1)  # run again after 1000ms (1s)
             else:
