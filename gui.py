@@ -60,7 +60,6 @@ def app_layout(self):
 def app1():
     if os.path.exists(UHF_DIR + "uhf-sweep.sh") == True:
         UHF_SCRIPT = subprocess.run(["sudo " + UHF_DIR + "./uhf-sweep.sh"], shell=True, capture_output=True, text=True)
-        print(UHF_SCRIPT.stdout)
         if os.path.exists(UHF_DIR + "uhf_sweep.csv") == True:
             UHF_FILE = open(UHF_DIR + 'uhf_sweep.csv', 'r')
             F_LINES = UHF_FILE.read().splitlines()
@@ -88,9 +87,9 @@ def app1():
                 tree.insert('', 'end', values=(LAST_TAG[4], 1, TAG_TIME[0], TAG_TIME[0], TAG_RSSI, 'GPS'))
             
             #os.remove(UHF_DIR + "uhf_sweep.csv")
-            UHF_FILE = open(UHF_DIR + 'uhf_sweep.csv', 'w')
-            UHF_FILE.write('0,0,0,0,0')
-            UHF_FILE.close()
+            #UHF_FILE = open(UHF_DIR + 'uhf_sweep.csv', 'w')
+            #UHF_FILE.write('0,0,0,0,0')
+            #UHF_FILE.close()
             window.after(500, app1)  # run again after 1000ms (1s)
         else:
             tree.insert('', 'end', values=('INPUT', 'FILE', 'NOT', 'FOUND', '', ''))
