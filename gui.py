@@ -83,7 +83,7 @@ def app1():
                                 tree.set(i, '# 4', TAG_TIME[0])
                                 tree.set(i, '# 5', TAG_RSSI)
                     if TAG_CHECK == 0:
-                        tree.insert('', 'end', values=(LAST_TAG[4], 1, TAG_TIME[0], TAG_TIME[0], TAG_RSSI, 'GPS', tags=('TREE_LINE',))
+                        tree.insert('', 'end', values=(LAST_TAG[4], 1, TAG_TIME[0], TAG_TIME[0], TAG_RSSI, 'GPS'), tags=('TREE_LINE',))
                 else:
                     tree.insert('', 'end', values=(LAST_TAG[4], 1, TAG_TIME[0], TAG_TIME[0], TAG_RSSI, 'GPS'), tags=('TREE_LINE',))
             
