@@ -64,6 +64,7 @@ def app1():
         if os.path.exists(UHF_DIR + "uhf_sweep.csv") == True:
             UHF_FILE = open(UHF_DIR + 'uhf_sweep.csv', 'r')
             F_LINES = UHF_FILE.read().splitlines()
+            print(f'{F_LINES}')
             LAST_LINE = F_LINES[-1]
             UHF_FILE.close()
             LAST_TAG =  LAST_LINE.split(",")
