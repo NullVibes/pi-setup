@@ -56,13 +56,13 @@ def app_layout(self):
     
 def app1():
     if os.path.exists(UHF_DIR + "uhf-sweep.sh") == True:
-        print(f'TEST TEST TEST')
         subprocess.run(["sudo " + UHF_DIR + "./uhf-sweep.sh"], shell=True, capture_output=True, text=True)
         if os.path.exists(UHF_DIR + "uhf_sweep.csv") == True:
             #LAST_TAG = str(subprocess.run(["tail -n1 " + UHF_DIR + "uhf_sweep.csv | cut -d',' -f5"], shell=True, capture_output=True, text=True).stdout[:-1])
-            with open(UHF_DIR + 'uhf_sweep.csv', 'r') as UHF_FILE:
-                F_LINES = UHF_FILE.read().splitlines()
-                LAST_LINE = F_LINES[-1]
+            UHF_FILE = open(UHF_DIR + 'uhf_sweep.csv', 'r')
+            #with open(UHF_DIR + 'uhf_sweep.csv', 'r') as UHF_FILE:
+            F_LINES = UHF_FILE.read().splitlines()
+            LAST_LINE = F_LINES[-1]
             UHF_FILE.close()
             #UHF_FILE = open(UHF_DIR + "uhf_sweep.csv", "r")
             #LAST_TAG = UHF_FILE.readline().split(",")
