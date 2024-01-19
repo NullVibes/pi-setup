@@ -95,7 +95,6 @@ def app1():
             else:
                 window.after(500, app1)  # run again after 1000ms (1s)
         else:
-            #UHF_SCRIPT = subprocess.run(["sudo " + UHF_DIR + "./uhf-sweep.sh"], shell=True, capture_output=True, text=True)
             tree.insert('', 'end', values=('INPUT', 'FILE', 'NOT', 'FOUND', '', ''))
     else:
         tree.insert('', 'end', values=('SCRIPT', 'NOT', 'FOUND', '', '', ''))
@@ -161,7 +160,7 @@ tree.column("# 4", anchor=CENTER, width=175)
 tree.heading("# 4", text="L_Seen")
 tree.column("# 5", anchor=CENTER, width=80)
 tree.heading("# 5", text="RSSI")
-tree.column("# 6", anchor=CENTER)
+tree.column("# 6", anchor=CENTER, width=10)
 tree.heading("# 6", text="GPS")
 tree.pack_forget()
 
