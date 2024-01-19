@@ -23,8 +23,10 @@ UHF_DIR = "/opt/UHF-Sweep/"
 def hide(widget):
     widget.pack_forget()
 
+
 def show(widget):
     widget.pack()
+
 
 def app_layout(self):
     hide(cApp1)
@@ -53,10 +55,12 @@ def app_layout(self):
     self.button.append(Button(self, text='Help ?', width=10, height=1, bd='0', command=window.destroy))
     self.button[i+1].config(bg="#22303C", fg="#888888", highlightthickness=2, highlightbackground="orange", highlightcolor="orange", font=('Arial 15 bold'))
     self.button[i+1].grid(row=3, column=0, columnspan=(i+1), sticky=E+W, pady=2, padx=10, ipadx=2, ipady=2)
-    
+
+
 def app1():
     if os.path.exists(UHF_DIR + "uhf-sweep.sh") == True:
         UHF_SCRIPT = subprocess.run(["sudo " + UHF_DIR + "./uhf-sweep.sh"], shell=True, capture_output=True, text=True)
+        print(UHF_SCRIPT.stdout)
         if os.path.exists(UHF_DIR + "uhf_sweep.csv") == True:
             #LAST_TAG = str(subprocess.run(["tail -n1 " + UHF_DIR + "uhf_sweep.csv | cut -d',' -f5"], shell=True, capture_output=True, text=True).stdout[:-1])
             UHF_FILE = open(UHF_DIR + 'uhf_sweep.csv', 'r')
@@ -92,6 +96,7 @@ def app1():
             tree.insert('', 'end', values=('INPUT', 'FILE', 'NOT', 'FOUND', '', ''))
     else:
         tree.insert('', 'end', values=('SCRIPT', 'NOT', 'FOUND', '', '', ''))
+
 
 def open_app(appNum):
     cMenu.pack_forget()
