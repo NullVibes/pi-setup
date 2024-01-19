@@ -150,7 +150,7 @@ cApp1.place(x=0, y=0)
 
 tree = ttk.Treeview(cApp1, column=("tag_id", "tag_count", "tag_fseen", "tag_lseen", "tag_rssi", "tag_gps"), show='headings', height=10)
 style = ttk.Style()
-style.configure("Treeview.Heading", font=(None, 100))
+style.configure("Treeview.Heading", font=(None, 14))
 tree.column("# 1", anchor=CENTER, width=215)
 tree.heading("# 1", text="Tag ID")
 tree.column("# 2", anchor=CENTER, width=60)
