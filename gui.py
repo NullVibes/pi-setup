@@ -66,7 +66,7 @@ def app1():
             #print(f'{F_LINES}')
             LAST_LINE = F_LINES[-1]
             UHF_FILE.close()
-            if LAST_LINE != '':
+            if LAST_LINE != '' and LAST_LINE != '0,0,0,0,0':
                 LAST_TAG =  LAST_LINE.split(",")
                 TAG_TIME = LAST_TAG[0].split(".")
                 TAG_RSSI = LAST_TAG[2]
