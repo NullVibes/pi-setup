@@ -138,7 +138,8 @@ cApp2.pack_forget()
 
 
 # --- Canvas: App #1 (UHF Sweep) ---
-cApp1 = Canvas(window, height=430, width=800, bg="#22303C", bd='0', borderwidth=0, highlightthickness=0)
+#cApp1 = Canvas(window, height=420, width=800, bg="#22303C", bd='0', borderwidth=0, highlightthickness=0)
+cApp1 = Canvas(window, height=500, width=800, bg="#22303C", bd='0', borderwidth=0, highlightthickness=0)
 cApp1.place(x=0, y=0)
 
 #lstBox1 = Listbox(cApp1, height=3, width=50, bd='0')
@@ -157,9 +158,9 @@ tree.column("# 1", anchor=CENTER, width=215)
 tree.heading("# 1", text="Tag ID")
 tree.column("# 2", anchor=CENTER, width=75)
 tree.heading("# 2", text="Count")
-tree.column("# 3", anchor=CENTER, width=210)
+tree.column("# 3", anchor=CENTER, width=215)
 tree.heading("# 3", text="First")
-tree.column("# 4", anchor=CENTER, width=210)
+tree.column("# 4", anchor=CENTER, width=215)
 tree.heading("# 4", text="Last")
 tree.column("# 5", anchor=CENTER, width=75)
 tree.heading("# 5", text="RSSI")
