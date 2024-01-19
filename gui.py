@@ -63,35 +63,37 @@ def app1():
         if os.path.exists(UHF_DIR + "uhf_sweep.csv") == True:
             UHF_FILE = open(UHF_DIR + 'uhf_sweep.csv', 'r')
             F_LINES = UHF_FILE.read().splitlines()
-            print(f'{F_LINES}')
+            #print(f'{F_LINES}')
             LAST_LINE = F_LINES[-1]
             UHF_FILE.close()
-            LAST_TAG =  LAST_LINE.split(",")
-            TAG_TIME = LAST_TAG[0].split(".")
-            TAG_RSSI = LAST_TAG[2]
-            #TAG_RSSI = int(LAST_TAG[2]).to_bytes(2, 'big')
-            ALL_TAGS = tree.get_children()
-            TAG_CHECK = 0
-            if len(ALL_TAGS) > 0:
-                for i in ALL_TAGS:
-                    TAG_COUNT = tree.item(i)['values'][1]
-                    if LAST_TAG[4] == tree.item(i)['values'][0]:
-                        TAG_CHECK += 1
-                        if TAG_TIME[0] != tree.item(i)['values'][3]:
-                            tree.set(i, '# 2', (tree.item(i)['values'][1] + 1))
-                            tree.set(i, '# 4', TAG_TIME[0])
-                            tree.set(i, '# 5', TAG_RSSI)
-                if TAG_CHECK == 0:
+            if LAST_LINE != '0,0,0,0,0':
+                LAST_TAG =  LAST_LINE.split(",")
+                TAG_TIME = LAST_TAG[0].split(".")
+                TAG_RSSI = LAST_TAG[2]
+                #TAG_RSSI = int(LAST_TAG[2]).to_bytes(2, 'big')
+                ALL_TAGS = tree.get_children()
+                TAG_CHECK = 0
+                if len(ALL_TAGS) > 0:
+                    for i in ALL_TAGS:
+                        TAG_COUNT = tree.item(i)['values'][1]
+                        if LAST_TAG[4] == tree.item(i)['values'][0]:
+                            TAG_CHECK += 1
+                            if TAG_TIME[0] != tree.item(i)['values'][3]:
+                                tree.set(i, '# 2', (tree.item(i)['values'][1] + 1))
+                                tree.set(i, '# 4', TAG_TIME[0])
+                                tree.set(i, '# 5', TAG_RSSI)
+                    if TAG_CHECK == 0:
+                        tree.insert('', 'end', values=(LAST_TAG[4], 1, TAG_TIME[0], TAG_TIME[0], TAG_RSSI, 'GPS'))
+                else:
                     tree.insert('', 'end', values=(LAST_TAG[4], 1, TAG_TIME[0], TAG_TIME[0], TAG_RSSI, 'GPS'))
-            else:
-                tree.insert('', 'end', values=(LAST_TAG[4], 1, TAG_TIME[0], TAG_TIME[0], TAG_RSSI, 'GPS'))
             
-            #os.remove(UHF_DIR + "uhf_sweep.csv")
-            #UHF_FILE = open(UHF_DIR + 'uhf_sweep.csv', 'w')
-            #UHF_FILE.write('0,0,0,0,0')
-            #UHF_FILE.close()
-            window.after(500, app1)  # run again after 1000ms (1s)
+                #os.remove(UHF_DIR + "uhf_sweep.csv")
+                UHF_FILE = open(UHF_DIR + 'uhf_sweep.csv', 'w')
+                UHF_FILE.write('0,0,0,0,0')
+                UHF_FILE.close()
+                window.after(500, app1)  # run again after 1000ms (1s)
         else:
+            #UHF_SCRIPT = subprocess.run(["sudo " + UHF_DIR + "./uhf-sweep.sh"], shell=True, capture_output=True, text=True)
             tree.insert('', 'end', values=('INPUT', 'FILE', 'NOT', 'FOUND', '', ''))
     else:
         tree.insert('', 'end', values=('SCRIPT', 'NOT', 'FOUND', '', '', ''))
