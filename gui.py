@@ -83,9 +83,9 @@ def app1():
                                 tree.set(i, '# 4', TAG_TIME[0])
                                 tree.set(i, '# 5', TAG_RSSI)
                     if TAG_CHECK == 0:
-                        tree.insert('', 'end', values=(LAST_TAG[4], 1, TAG_TIME[0], TAG_TIME[0], TAG_RSSI, 'GPS'))
+                        tree.insert('', 'end', values=(LAST_TAG[4], 1, TAG_TIME[0], TAG_TIME[0], TAG_RSSI, 'GPS', tags=('TREE_LINE',))
                 else:
-                    tree.insert('', 'end', values=(LAST_TAG[4], 1, TAG_TIME[0], TAG_TIME[0], TAG_RSSI, 'GPS'))
+                    tree.insert('', 'end', values=(LAST_TAG[4], 1, TAG_TIME[0], TAG_TIME[0], TAG_RSSI, 'GPS'), tags=('TREE_LINE',))
             
                 #os.remove(UHF_DIR + "uhf_sweep.csv")
                 UHF_FILE = open(UHF_DIR + 'uhf_sweep.csv', 'w')
@@ -149,8 +149,9 @@ cApp1.place(x=0, y=0)
 #scrollbar1.config(command = lstBox1.yview)
 
 tree = ttk.Treeview(cApp1, column=("tag_id", "tag_count", "tag_fseen", "tag_lseen", "tag_rssi", "tag_gps"), show='headings', height=10)
+tree.tag_configure('TREE_LINE', background='#22303C', font=(None, 14))
 style = ttk.Style()
-style.configure("Treeview.Heading", font=(None, 14))
+style.configure('Treeview.Heading', font=(None, 14))
 tree.column("# 1", anchor=CENTER, width=215)
 tree.heading("# 1", text="Tag ID")
 tree.column("# 2", anchor=CENTER, width=60)
