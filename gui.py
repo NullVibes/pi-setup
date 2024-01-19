@@ -36,13 +36,13 @@ def app_layout(self):
     appList = ["UHF\nSweep", "Kismet", "Option 3"]
     x = 0
 
-    # Dynamically add button objects to the canvas, based on the items in appList[]
+# -- Dynamically add button objects to the canvas, based on the items in appList[]
     for i in range(len(appList)):
         self.button.append(Button(self, text=appList[i], width=8, height=4, bd='0', command=lambda i=i: open_app(i)))
         self.button[i].config(bg="#22303C", fg="#888888", highlightthickness=2, highlightbackground="orange", highlightcolor="orange", font=('Arial 15 bold'))
         self.button[i].grid(row=0, column=i, sticky=N+E+S+W, pady=2, padx=10, ipadx=2, ipady=2)
 
-    # Add an empty Label object for Help spacing
+# -- Add an empty Label object for Help spacing
     self.label.append(Label(self, text='', width=10, height=1, bd='0'))
     self.label[0].config(bg="#22303C", highlightthickness=0, borderwidth=0)
     self.label[0].grid(row=1, column=0, columnspan=(i+1), sticky=E+W, pady=2, padx=10, ipadx=2, ipady=2)
@@ -51,7 +51,7 @@ def app_layout(self):
     s.configure('TSeparator', background='#5daed7')
     ttk.Separator(master=self, orient='horizontal', style='TSeparator').grid(row=2, column=0, columnspan=(i+1), sticky=E+W, pady=0, padx=5, ipadx=0, ipady=0)
     
-    # Add the actual Help button
+# -- Add the actual Help button
     self.button.append(Button(self, text='Help ?', width=10, height=1, bd='0', command=window.destroy))
     self.button[i+1].config(bg="#22303C", fg="#888888", highlightthickness=2, highlightbackground="orange", highlightcolor="orange", font=('Arial 15 bold'))
     self.button[i+1].grid(row=3, column=0, columnspan=(i+1), sticky=E+W, pady=2, padx=10, ipadx=2, ipady=2)
@@ -107,7 +107,6 @@ def open_app(appNum):
         tree.pack()
         cApp2.pack_forget()
         app1()
-        #window.after(500, app1)  # run again after 1000ms (1s)
     elif appNum == 1:
         cApp2.pack()
         cApp1.pack_forget()
@@ -139,7 +138,7 @@ cApp2.pack_forget()
 
 
 # --- Canvas: App #1 (UHF Sweep) ---
-cApp1 = Canvas(window, height=420, width=800, bg="#22303C", bd='0', borderwidth=0, highlightthickness=0)
+cApp1 = Canvas(window, height=430, width=800, bg="#22303C", bd='0', borderwidth=0, highlightthickness=0)
 cApp1.place(x=0, y=0)
 
 #lstBox1 = Listbox(cApp1, height=3, width=50, bd='0')
@@ -150,6 +149,8 @@ cApp1.place(x=0, y=0)
 #scrollbar1.config(command = lstBox1.yview)
 
 tree = ttk.Treeview(cApp1, column=("tag_id", "tag_count", "tag_fseen", "tag_lseen", "tag_rssi", "tag_gps"), show='headings', height=10)
+style = ttk.Style()
+style.configure("Treeview.Heading", font=(None, 100))
 tree.column("# 1", anchor=CENTER, width=215)
 tree.heading("# 1", text="Tag ID")
 tree.column("# 2", anchor=CENTER, width=60)
