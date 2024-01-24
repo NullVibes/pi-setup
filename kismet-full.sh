@@ -20,6 +20,10 @@ if [[ $CONT == "n" ]]; then
   exit
 fi
 
+# Disable MAC randomization for the g_ether interface
+echo 'options g_ether host_addr='$(dmesg | awk '/: HOST MAC/{print $NF}')' dev_addr='$(dmesg | awk '/: MAC/{print $NF}') | sudo tee /etc/modprobe.d/g_ether.conf
+
+
 wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key --quiet | gpg --dearmor | sudo tee /usr/share/keyrings/kismet-archive-keyring.gpg &> /dev/null
 
 if [[ $DISTID == *"Ubuntu"* ]]; then
