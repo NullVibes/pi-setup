@@ -8,7 +8,7 @@ echo 'CODENAME = '$CODENAME
 echo 'RASPICONFPATH = '$RASPICONFPATH
 echo ""
 echo "This installer will build the -NIGHTLY- (most up-to-date) package from Git." 
-read -p "Continue? (Y/n): " -n1 CONT
+read -p "Continue? (Y/n): " -n1 -s CONT
 echo ""
 
 if [[ -d /opt/kismet ]]; then
