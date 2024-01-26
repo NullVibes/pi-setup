@@ -44,7 +44,7 @@ def selectTreeItem(item):
     curItem = tree.focus()
     if tree.item(curItem)['values'] != '':
         tgt = tree.item(curItem)['values'][0]
-        answer = messagebox.askokcancel("Question","Target ID: {tgt}?\n\nThis will clear current list.")
+        answer = messagebox.askokcancel("Question","Target ID: "{tgt}"?\n\nThis will clear current list.")
         #print(tree.item(curItem))
     else:
         pass
