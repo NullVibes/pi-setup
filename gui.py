@@ -11,6 +11,15 @@ except ModuleNotFoundError:
     print("pip install tk")
     sys.exit(1)
 
+
+try:
+    from tkinter import messagebox
+except ModuleNotFoundError:
+    print("Please install tkinter module first.")
+    print("pip install tk")
+    sys.exit(1)
+    
+
 try:
     from tkinter import ttk
 except ModuleNotFoundError:
@@ -18,7 +27,10 @@ except ModuleNotFoundError:
     print("pip install tk")
     sys.exit(1)
 
+
+# --- Main App Directory
 UHF_DIR = "/opt/UHF-Sweep/"
+# ---
 
 def hide(widget):
     widget.pack_forget()
@@ -30,9 +42,12 @@ def show(widget):
 
 def selectTreeItem(item):
     curItem = tree.focus()
-    if tree.item(curItem)['values'] == '':
-        print("NOTHING")
-    print(tree.item(curItem))
+    if tree.item(curItem)['values'] != '':
+        tgt = tree.item(curItem)['values'][0]
+        answer = messagebox.askokcancel("Question","Target ID: {tgt}?\n\nThis will clear current list.")
+        #print(tree.item(curItem))
+    else:
+        pass
 
 
 def app_layout(self):
@@ -43,6 +58,7 @@ def app_layout(self):
     appList = ["UHF\nSweep", "Kismet", "Option 3"]
     x = 0
 
+    
 # -- Dynamically add button objects to the canvas, based on the items in appList[]
     for i in range(len(appList)):
         self.button.append(Button(self, text=appList[i], width=8, height=4, bd='0', command=lambda i=i: open_app(i)))
