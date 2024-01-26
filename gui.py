@@ -40,8 +40,10 @@ def show(widget):
     widget.pack()
 
 
-def target_id(id):
-    pass
+def target_id(TGT_ID):
+    UHF_SCRIPT = subprocess.run(["sudo " + UHF_DIR + "./uhf-sweep.sh --epc" + TGT_ID], shell=True, capture_output=True, text=True)
+    print(UHF_SCRIPT)
+    
 
 def selectTreeItem(item):
     TGT_ITEM = tree.focus()
