@@ -28,6 +28,11 @@ def show(widget):
     widget.pack()
 
 
+def selectTreeItem(item):
+    curItem = tree.focus()
+    print(tree.item(curItem))
+
+
 def app_layout(self):
     hide(cApp1)
     cApp2.pack_forget()
@@ -58,6 +63,7 @@ def app_layout(self):
 
 
 def app1():
+    tree.bind('<ButtonRelease-1>', selectTreeItem)
     if os.path.exists(UHF_DIR + "uhf-sweep.sh") == True:
         UHF_SCRIPT = subprocess.run(["sudo " + UHF_DIR + "./uhf-sweep.sh"], shell=True, capture_output=True, text=True)
         if os.path.exists(UHF_DIR + "uhf_sweep.csv") == True:
