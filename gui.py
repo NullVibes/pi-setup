@@ -44,7 +44,7 @@ def show(widget):
 def target_id(TGT_ID):
     UHF_TGT_MODE = 1
     UHF_SCRIPT = subprocess.run(["sudo " + UHF_DIR + "./uhf-sweep.sh --epc " + TGT_ID], shell=True, capture_output=True, text=True)
-    print(UHF_SCRIPT.stdout)
+    #print(UHF_SCRIPT.stdout)
     window.after(500, target_id(TGT_ID))  # run again after 1000ms (1s)
     
 
