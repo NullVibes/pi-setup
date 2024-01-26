@@ -30,7 +30,7 @@ def show(widget):
 
 def selectTreeItem(item):
     curItem = tree.focus()
-    if tree.item(curItem.values) == '':
+    if tree.item(curItem).values == '':
         print("nothing")
     print(tree.item(curItem))
 
