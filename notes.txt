@@ -1,0 +1,8 @@
+# Debian -> Stop asking for sudoer's password
+  sudo visudo
+  Edit line for members of sudo group to:
+  %sudo  ALL=(ALL:ALL) NOPASSWD:ALL
+
+# Debain -> Run GUI at login
+  gnome-session-properties
+  sudo python3 /opt/pi-setup/gui.py
