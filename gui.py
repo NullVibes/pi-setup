@@ -40,12 +40,19 @@ def show(widget):
     widget.pack()
 
 
+def target_id(id):
+    pass
+
 def selectTreeItem(item):
-    curItem = tree.focus()
-    if tree.item(curItem)['values'] != '':
-        tgt = tree.item(curItem)['values'][0]
-        answer = messagebox.askokcancel("Question","Target ID: "+ tgt +"?\n\nThis will clear current list.")
-        print(answer)
+    TGT_ITEM = tree.focus()
+    if tree.item(TGT_ITEM)['values'] != '':
+        TGT_ASK = tree.item(TGT_ITEM)['values'][0]
+        TGT_ANSWER = messagebox.askokcancel("Question","Target ID: "+ TGT_ASK +"?\n\nThis will clear current list.")
+        #print(TGT_ANSWER)
+        if TGT_ANSWER == True:
+            target_id(TGT_ASK)
+        else:
+            pass
     else:
         pass
 
@@ -87,7 +94,6 @@ def app1():
         if os.path.exists(UHF_DIR + "uhf_sweep.csv") == True:
             UHF_FILE = open(UHF_DIR + 'uhf_sweep.csv', 'r')
             F_LINES = UHF_FILE.read().splitlines()
-            #print(f'{F_LINES}')
             LAST_LINE = F_LINES[-1]
             UHF_FILE.close()
             if LAST_LINE != '' and LAST_LINE != '0,0,0,0,0':
