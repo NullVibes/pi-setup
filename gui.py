@@ -32,7 +32,7 @@ def selectTreeItem(item):
     curItem = tree.focus()
     if tree.item(curItem).values == '':
         print("nothing")
-    print(tree.item(curItem))
+    print(tree.item(curItem).values)
 
 
 def app_layout(self):
