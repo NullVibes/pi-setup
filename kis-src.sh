@@ -52,7 +52,7 @@ then
    			CHECKWIFI=$(sudo grep -c "source=$F:name=wlan$G,channel_hop=true" $SITE)
       			if [[ $CHECKWIFI -eq 0 || $CHECKWIFI == "" ]]; then
 				echo 'source='$F':name=wlan'$G',channel_hop=true' | tee -a $SITE &>/dev/null
-    				echo 'kismet_cap_linux_wifi --connect 127.0.0.1:3500 --tcp --fixed-gps 39.5,-75.5 --source=wlan'$F':name=Wifi'$G',type=linuxwifi,channel_hop=true --daemonize' | tee -a $REMOTE &> /dev/null
+    				echo 'kismet_cap_linux_wifi --connect 127.0.0.1:3500 --tcp --fixed-gps 39.5,-75.5 --source='$F':name=wlan'$G',type=linuxwifi,channel_hop=true --daemonize' | tee -a $REMOTE &> /dev/null
     			fi
 		fi
 	done
