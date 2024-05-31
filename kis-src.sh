@@ -14,11 +14,12 @@ echo 'server_name=Kismet' | tee -a $SITE &>/dev/null
 echo 'server_description=Mobile' | tee -a $SITE &>/dev/null
 echo 'log_prefix=/opt/kismet' | tee -a $SITE &>/dev/null
 echo 'log_types=kismet' | tee -a $SITE &>/dev/null
+echo 'gps=gpsd:host=localhost,port=2947'
 
 # Remote capture sources (optional)
-echo 'remote_capture_enable=true' | tee -a $SITE &>/dev/null
-echo 'remote_capture_listen=0.0.0.0' | tee -a $SITE &>/dev/null
-echo 'remote_capture_port=3501' | tee -a $SITE &>/dev/null
+echo '#remote_capture_enable=true' | tee -a $SITE &>/dev/null
+echo '#remote_capture_listen=0.0.0.0' | tee -a $SITE &>/dev/null
+echo '#remote_capture_port=3501' | tee -a $SITE &>/dev/null
 
 A=$(ip a | grep -E -c -i 'wlan[0-9]mon')
 
