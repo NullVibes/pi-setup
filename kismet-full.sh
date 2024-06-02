@@ -46,9 +46,9 @@ elif [[ $DISTID == *"Debian"* ]] && [[ $RASPICONFPATH != *"/usr/bin/raspi-config
 elif [[ $RASPICONFPATH == "/usr/bin/raspi-config" ]]; then
   echo 'RaspberryPi detected...'
   if [[ $CODENAME == *"bullseye"* ]]; then
-    echo 'deb [signed-by=/usr/share/keyrings/kismet-archive-keyring.gpg] https://www.kismetwireless.net/repos/apt/git/bullseye bullseye main' | sudo tee /etc/apt/sources.list.d/kismet.list &>/dev/null
+    echo 'deb [arch=arm64 signed-by=/usr/share/keyrings/kismet-archive-keyring.gpg] https://www.kismetwireless.net/repos/apt/git/bullseye bullseye main' | sudo tee /etc/apt/sources.list.d/kismet.list &>/dev/null
   elif [[ $CODENAME == *"bookworm"* ]]; then
-    echo 'deb [signed-by=/usr/share/keyrings/kismet-archive-keyring.gpg] https://www.kismetwireless.net/repos/apt/git/bookworm bookworm main' | sudo tee /etc/apt/sources.list.d/kismet.list &>/dev/null
+    echo 'deb [arch=arm64 signed-by=/usr/share/keyrings/kismet-archive-keyring.gpg] https://www.kismetwireless.net/repos/apt/git/bookworm bookworm main' | sudo tee /etc/apt/sources.list.d/kismet.list &>/dev/null
   fi
   sudo apt install raspberrypi-kernel-headers -y
   #linux-headers-6.1.21+
