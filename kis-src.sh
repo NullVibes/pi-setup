@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Sleep is REQUIRED to give devices (GPS!)enough to time to be recognized by the OS
+# Sleep is REQUIRED to give devices (GPS!) enough to time to be recognized by the OS.
 sleep 30
 SITE='/etc/kismet/kismet_site.conf'
 REMOTE='/opt/pi-setup/kismet-remote.sh'
 
-# Remove interfaces already in monitor mode.
+# Erase previous configs
 cat /dev/null | tee $SITE &>/dev/null
 cat /dev/null | tee $REMOTE &>/dev/null
 echo '#!/bin/bash' | tee -a $REMOTE &>/dev/null
@@ -14,7 +14,7 @@ echo 'server_name=Kismet' | tee -a $SITE &>/dev/null
 echo 'server_description=Mobile' | tee -a $SITE &>/dev/null
 echo 'log_prefix=/opt/kismet' | tee -a $SITE &>/dev/null
 echo 'log_types=kismet' | tee -a $SITE &>/dev/null
-echo 'gps=gpsd:host=localhost,port=2947'
+echo 'gps=gpsd:host=localhost,port=2947' | tee -a $SITE &>/dev/null
 
 # Remote capture sources (optional)
 echo '#remote_capture_enable=true' | tee -a $SITE &>/dev/null
@@ -36,7 +36,7 @@ fi
 # Add monitor-mode-capable interfaces to kismet_site.conf
 C=$(iw dev | grep -E -c -i 'phy#[0-9]')
 D=$(iw dev | grep -E -m 1 -i 'phy#[0-9]' | sed '$ s/[a-z#]//g')
-#echo 'mask_datasource_name=wlan0' | tee /etc/kismet/kismet_site.conf &>/dev/null
+echo '#mask_datasource_name=wlan0' | tee -a $SITE &>/dev/null
 
 #Probe for WiFi adapters
 if [ $C -ne 0 ]
@@ -112,8 +112,9 @@ fi
 # Probe for GPS adapters
 H=$(ls -lh /dev | grep -E -c -i 'gps[0-9]')
 I=$(ls -lh /dev | grep -E -c -i 'ttyACM[0-9]')
+J=$(ls -lh /dev | grep -E -c -i 'ttyUSB[0-9]')
 
-if [ $H -gt 0 ] || [ $I -gt 0 ]
+if [ $H -gt 0 ] || [ $I -gt 0 ] || [ $J -gt 0 ]
 then
 	echo 'gps=gpsd:host=localhost,port=2947,reconnect=true' | tee -a $SITE &>/dev/null
 fi
