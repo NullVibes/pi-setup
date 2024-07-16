@@ -36,7 +36,7 @@ fi
 # Add monitor-mode-capable interfaces to kismet_site.conf
 C=$(iw dev | grep -E -c -i 'phy#[0-9]')
 D=$(iw dev | grep -E -m 1 -i 'phy#[0-9]' | sed '$ s/[a-z#]//g')
-echo '#mask_datasource_name=wlan0' | tee -a $SITE &>/dev/null
+echo '#mask_datasource_interface=wlan0' | tee -a $SITE &>/dev/null
 
 #Probe for WiFi adapters
 if [ $C -ne 0 ]
