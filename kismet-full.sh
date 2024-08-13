@@ -69,7 +69,7 @@ sudo systemctl daemon-reload
 if [[ -e /etc/default/gpsd ]]; then
   echo 'START_DAEMON="true' | sudo tee -a /etc/default/gpsd &>/dev/null
   sudo sed -i 's/DEVICES=""/DEVICES="/dev/ttyUSB0"' /etc/default/gpsd
-  sudo sed -i 's/GPSD_OPTIONS=""/GPSD_OPTIONS="-n"' /etc/default/gpsd
+  sudo sed -i 's/GPSD_OPTIONS=""/GPSD_OPTIONS="-n -b"' /etc/default/gpsd
 fi
 
 if [[ -e /etc/chrony/chrony.conf ]]; then
