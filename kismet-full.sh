@@ -88,8 +88,8 @@ fi
 sudo make dkms_install
 
 sudo apt install python3-pip -y
-pip install gpsd-py3 google-api-python-client
-pip install --upgrade "protobuf<=3.20.1"
+pip install gpsd-py3 google-api-python-client --break-system-packages
+pip install --upgrade "protobuf<=3.20.2" --break-system-packages
 cd /opt
 sudo git clone https://github.com/ckoval7/kisStatic2Mobile.git
 
